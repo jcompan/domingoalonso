@@ -377,41 +377,44 @@
     <!-- SCRIPT DE SIMULACIÓN -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const email1 = document.getElementById('email1');
-            const email2 = document.getElementById('email2');
-            const email3 = document.getElementById('email3');
-            const email4 = document.getElementById('email4');
-            const email5 = document.getElementById('email5');
-            const replyBox = document.getElementById('replyBox');
+            const steps = [
+                document.getElementById('email1'),
+                document.getElementById('email2'),
+                document.getElementById('email3'),
+                document.getElementById('email4'),
+                document.getElementById('email5'),
+                document.getElementById('replyBox')
+            ];
             const container = document.getElementById('scrollContainer');
+            let currentStep = 0;
 
-            // Secuencia de aparición
-            setTimeout(() => { email1.classList.add('visible'); }, 500);
-
+            // Mostrar el primer correo automáticamente tras medio segundo
             setTimeout(() => {
-                email2.classList.add('visible');
-                if(email2) container.scrollTop = email2.offsetTop - 100;
-            }, 1800);
+                if(steps[0]) {
+                    steps[0].classList.add('visible');
+                    currentStep++;
+                }
+            }, 500);
 
-            setTimeout(() => {
-                email3.classList.add('visible');
-                container.scrollTo({ top: container.scrollHeight, behavior: 'smooth' });
-            }, 3600); 
-
-            setTimeout(() => {
-                if(email4) email4.classList.add('visible');
-                container.scrollTo({ top: container.scrollHeight, behavior: 'smooth' });
-            }, 5500); 
-
-            setTimeout(() => {
-                if(email5) email5.classList.add('visible');
-                container.scrollTo({ top: container.scrollHeight, behavior: 'smooth' });
-            }, 7500); 
-
-            setTimeout(() => {
-                replyBox.classList.add('visible');
-                container.scrollTo({ top: container.scrollHeight, behavior: 'smooth' });
-            }, 8500);
+            // Escuchar cualquier pulsación de tecla para avanzar al siguiente correo
+            document.addEventListener('keydown', (e) => {
+                if (currentStep < steps.length) {
+                    const nextElement = steps[currentStep];
+                    if (nextElement) {
+                        nextElement.classList.add('visible');
+                        
+                        // Ajustar el scroll dependiendo del correo que se muestra
+                        if (currentStep === 1) { 
+                            // Para el email2 ajustamos ligeramente
+                            container.scrollTop = nextElement.offsetTop - 100;
+                        } else {
+                            // Para el resto nos vamos al final suavemente
+                            container.scrollTo({ top: container.scrollHeight, behavior: 'smooth' });
+                        }
+                    }
+                    currentStep++;
+                }
+            });
         });
     </script>
 
