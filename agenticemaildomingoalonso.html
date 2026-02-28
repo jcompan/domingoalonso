@@ -72,6 +72,53 @@
 </head>
 <body class="overflow-hidden">
 
+    <!-- CONFIGURADOR DE LA DEMO -->
+    <div id="configModal" class="fixed inset-0 bg-gray-900/60 backdrop-blur-sm z-[100] flex items-center justify-center font-sans transition-opacity duration-300">
+        <div class="bg-white rounded-xl shadow-2xl p-8 w-[400px] max-w-[90%] border border-gray-100">
+            <div class="text-center mb-6">
+                <i class="fa-solid fa-sliders text-3xl da-blue mb-3"></i>
+                <h2 class="text-xl font-bold text-[#002b49]">Configuración de la Demo</h2>
+                <p class="text-sm text-gray-500 mt-1">Elige cómo quieres presentar el flujo</p>
+            </div>
+            
+            <div class="space-y-6">
+                <!-- Modo -->
+                <div>
+                    <label class="block text-sm font-semibold text-gray-800 mb-3">Modo de avance:</label>
+                    <div class="flex flex-col gap-3">
+                        <label class="flex items-center gap-3 p-3 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50 transition">
+                            <input type="radio" name="mode" value="manual" checked class="w-4 h-4 text-[#059669] focus:ring-[#059669]">
+                            <div>
+                                <span class="text-sm font-medium text-gray-800 block">Manual</span>
+                                <span class="text-xs text-gray-500">Avanza pulsando cualquier tecla</span>
+                            </div>
+                        </label>
+                        <label class="flex items-center gap-3 p-3 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50 transition">
+                            <input type="radio" name="mode" value="auto" class="w-4 h-4 text-[#059669] focus:ring-[#059669]">
+                            <div>
+                                <span class="text-sm font-medium text-gray-800 block">Automático</span>
+                                <span class="text-xs text-gray-500">Avanza solo con una pausa programada</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Tiempo (solo si es auto) -->
+                <div id="delayConfig" class="opacity-50 pointer-events-none transition-opacity duration-200 bg-gray-50 p-4 rounded-lg border border-gray-100">
+                    <label class="block text-sm font-semibold text-gray-800 mb-2">Tiempo de transición:</label>
+                    <div class="flex items-center gap-3">
+                        <input type="number" id="timeDelay" value="2.5" min="0.5" step="0.5" class="w-24 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-[#059669] focus:ring-1 focus:ring-[#059669] text-center font-medium">
+                        <span class="text-sm text-gray-600">segundos</span>
+                    </div>
+                </div>
+            </div>
+
+            <button id="startBtn" class="w-full mt-8 bg-[#002b49] text-white py-3 rounded-lg font-bold text-sm hover:bg-[#001a2e] transition shadow-md flex justify-center items-center gap-2">
+                <i class="fa-solid fa-play text-xs"></i> COMENZAR DEMO
+            </button>
+        </div>
+    </div>
+
     <div class="email-container">
         
         <!-- GMAIL HEADER -->
@@ -377,44 +424,87 @@
     <!-- SCRIPT DE SIMULACIÓN -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const steps = [
-                document.getElementById('email1'),
-                document.getElementById('email2'),
-                document.getElementById('email3'),
-                document.getElementById('email4'),
-                document.getElementById('email5'),
-                document.getElementById('replyBox')
-            ];
-            const container = document.getElementById('scrollContainer');
-            let currentStep = 0;
+            const configModal = document.getElementById('configModal');
+            const modeRadios = document.getElementsByName('mode');
+            const delayConfig = document.getElementById('delayConfig');
+            const timeDelayInput = document.getElementById('timeDelay');
+            const startBtn = document.getElementById('startBtn');
+            
+            // Lógica UI del modal de configuración
+            modeRadios.forEach(radio => {
+                radio.addEventListener('change', (e) => {
+                    if (e.target.value === 'auto') {
+                        delayConfig.classList.remove('opacity-50', 'pointer-events-none');
+                    } else {
+                        delayConfig.classList.add('opacity-50', 'pointer-events-none');
+                    }
+                });
+            });
 
-            // Mostrar el primer correo automáticamente tras medio segundo
-            setTimeout(() => {
-                if(steps[0]) {
-                    steps[0].classList.add('visible');
-                    currentStep++;
-                }
-            }, 500);
+            // Iniciar Demo
+            startBtn.addEventListener('click', () => {
+                const isManual = document.querySelector('input[name="mode"]:checked').value === 'manual';
+                const delayMs = parseFloat(timeDelayInput.value) * 1000;
+                
+                // Ocultar modal
+                configModal.classList.add('opacity-0');
+                setTimeout(() => {
+                    configModal.style.display = 'none';
+                    iniciarFlujo(isManual, delayMs);
+                }, 300);
+            });
 
-            // Escuchar cualquier pulsación de tecla para avanzar al siguiente correo
-            document.addEventListener('keydown', (e) => {
-                if (currentStep < steps.length) {
-                    const nextElement = steps[currentStep];
-                    if (nextElement) {
-                        nextElement.classList.add('visible');
+            // Función principal que gestiona la secuencia de correos
+            function iniciarFlujo(isManual, delayMs) {
+                const steps = [
+                    document.getElementById('email1'),
+                    document.getElementById('email2'),
+                    document.getElementById('email3'),
+                    document.getElementById('email4'),
+                    document.getElementById('email5'),
+                    document.getElementById('replyBox')
+                ];
+                const container = document.getElementById('scrollContainer');
+                let currentStep = 0;
+                let demoActive = true; // Flag para evitar que la tecla interfiera en modo automático
+
+                function showNext() {
+                    if (currentStep < steps.length) {
+                        const nextElement = steps[currentStep];
+                        if (nextElement) {
+                            nextElement.classList.add('visible');
+                            
+                            // Ajustar el scroll dependiendo del correo que se muestra
+                            if (currentStep === 1) { 
+                                container.scrollTop = nextElement.offsetTop - 100;
+                            } else {
+                                container.scrollTo({ top: container.scrollHeight, behavior: 'smooth' });
+                            }
+                        }
+                        currentStep++;
                         
-                        // Ajustar el scroll dependiendo del correo que se muestra
-                        if (currentStep === 1) { 
-                            // Para el email2 ajustamos ligeramente
-                            container.scrollTop = nextElement.offsetTop - 100;
-                        } else {
-                            // Para el resto nos vamos al final suavemente
-                            container.scrollTo({ top: container.scrollHeight, behavior: 'smooth' });
+                        // Si es automático, programar el siguiente
+                        if (!isManual && currentStep < steps.length) {
+                            setTimeout(showNext, delayMs);
                         }
                     }
-                    currentStep++;
                 }
-            });
+
+                // El primer correo siempre se muestra automáticamente tras arrancar
+                setTimeout(() => {
+                    showNext();
+                }, 500);
+
+                // Configurar el evento de teclado solo si estamos en modo manual
+                if (isManual) {
+                    document.addEventListener('keydown', (e) => {
+                        // Ignoramos teclas de modificación como Alt, Ctrl, Shift para no avanzar por error
+                        if (e.key !== "Alt" && e.key !== "Control" && e.key !== "Shift" && e.key !== "Meta") {
+                            showNext();
+                        }
+                    });
+                }
+            }
         });
     </script>
 
