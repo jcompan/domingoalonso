@@ -3,26 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gmail - Re: Sobre la tasación de tu coche y el salto a la etiqueta ECO</title>
+    <title>Gmail - Sobre la tasación de tu coche y el salto a la etiqueta ECO</title>
     <!-- Favicon de Domingo Alonso -->
     <link rel="icon" href="https://jcompan.github.io/domingoalonso/domingo_alonso_logo.jpg" type="image/jpeg">
     
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Inter:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #f6f8fc; }
-        .email-container { max-width: 100%; height: 100vh; display: flex; flex-direction: column; }
+        /* Tipografía UI de Gmail y cuerpo */
+        body { font-family: 'Google Sans', 'Inter', sans-serif; background-color: #f6f8fc; }
+        
+        /* Contenedor principal para no hacer scroll en la ventana, solo en el contenido */
+        .app-wrapper { height: 100vh; display: flex; flex-direction: column; overflow: hidden; }
         
         /* Animación de entrada */
-        .email-item { opacity: 0; transform: translateY(20px); transition: all 0.6s ease-out; }
+        .email-item { opacity: 0; transform: translateY(20px); transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1); display: none; }
+        .email-item.active { display: block; }
         .email-item.visible { opacity: 1; transform: translateY(0); }
         
-        /* --- ESTILOS ESPECÍFICOS DEL EMAIL LIMPIO (MKT DOMINGO ALONSO) --- */
+        /* ESTILOS ESPECÍFICOS DEL EMAIL (MKT DOMINGO ALONSO) */
         .clean-email { font-family: 'Montserrat', sans-serif; color: #111827; }
-        
-        /* Paleta Domingo Alonso / Auto */
         .da-blue { color: #002b49; }
         .da-bg-blue { background-color: #002b49; }
         .da-eco { color: #059669; }
@@ -54,7 +56,7 @@
         }
 
         .btn-primary { 
-            background-color: #059669; /* Verde ECO */
+            background-color: #059669;
             color: white; 
             width: 100%; 
             padding: 14px; 
@@ -68,42 +70,52 @@
         }
         .btn-primary:hover { background-color: #047857; }
 
+        /* Estilos del sidebar clonado de Gmail */
+        .nav-item { display: flex; align-items: center; padding: 0 12px 0 26px; height: 32px; font-size: 14px; color: #202124; border-radius: 0 16px 16px 0; margin-right: 16px; cursor: pointer; }
+        .nav-item:hover { background-color: #f1f3f4; }
+        .nav-item.active { background-color: #d3e3fd; color: #041e49; font-weight: 600; }
+        .nav-item i { width: 24px; font-size: 16px; margin-right: 18px; color: #444746; }
+        .nav-item.active i { color: #041e49; }
+
+        /* Scrollbar personalizado */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #dadce0; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #bdc1c6; }
     </style>
 </head>
-<body class="overflow-hidden">
+<body>
 
     <!-- CONFIGURADOR DE LA DEMO -->
-    <div id="configModal" class="fixed inset-0 bg-gray-900/60 backdrop-blur-sm z-[100] flex items-center justify-center font-sans transition-opacity duration-300">
-        <div class="bg-white rounded-xl shadow-2xl p-8 w-[400px] max-w-[90%] border border-gray-100">
+    <div id="configModal" class="fixed inset-0 bg-gray-900/60 backdrop-blur-sm z-[100] flex items-center justify-center transition-opacity duration-300">
+        <div class="bg-white rounded-2xl shadow-2xl p-8 w-[400px] max-w-[90%] border border-gray-100">
             <div class="text-center mb-6">
                 <i class="fa-solid fa-sliders text-3xl da-blue mb-3"></i>
                 <h2 class="text-xl font-bold text-[#002b49]">Configuración de la Demo</h2>
-                <p class="text-sm text-gray-500 mt-1">Elige cómo quieres presentar el flujo</p>
+                <p class="text-sm text-gray-500 mt-1">Controla cuándo responde el Agente IA tras enviar tu correo</p>
             </div>
             
             <div class="space-y-6">
-                <!-- Modo -->
                 <div>
-                    <label class="block text-sm font-semibold text-gray-800 mb-3">Modo de avance:</label>
+                    <label class="block text-sm font-semibold text-gray-800 mb-3">Respuestas del Agente IA:</label>
                     <div class="flex flex-col gap-3">
                         <label class="flex items-center gap-3 p-3 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50 transition">
                             <input type="radio" name="mode" value="manual" checked class="w-4 h-4 text-[#059669] focus:ring-[#059669]">
                             <div>
                                 <span class="text-sm font-medium text-gray-800 block">Manual</span>
-                                <span class="text-xs text-gray-500">Avanza pulsando cualquier tecla</span>
+                                <span class="text-xs text-gray-500">Pulsar tecla para ver la respuesta IA</span>
                             </div>
                         </label>
                         <label class="flex items-center gap-3 p-3 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50 transition">
                             <input type="radio" name="mode" value="auto" class="w-4 h-4 text-[#059669] focus:ring-[#059669]">
                             <div>
                                 <span class="text-sm font-medium text-gray-800 block">Automático</span>
-                                <span class="text-xs text-gray-500">Avanza solo con una pausa programada</span>
+                                <span class="text-xs text-gray-500">Responde tras la pausa configurada</span>
                             </div>
                         </label>
                     </div>
                 </div>
 
-                <!-- Tiempo (solo si es auto) -->
                 <div id="delayConfig" class="opacity-50 pointer-events-none transition-opacity duration-200 bg-gray-50 p-4 rounded-lg border border-gray-100">
                     <label class="block text-sm font-semibold text-gray-800 mb-2">Tiempo de transición:</label>
                     <div class="flex items-center gap-3">
@@ -113,223 +125,432 @@
                 </div>
             </div>
 
-            <button id="startBtn" class="w-full mt-8 bg-[#002b49] text-white py-3 rounded-lg font-bold text-sm hover:bg-[#001a2e] transition shadow-md flex justify-center items-center gap-2">
+            <button id="startBtn" class="w-full mt-8 bg-[#002b49] text-white py-3 rounded-xl font-bold text-sm hover:bg-[#001a2e] transition shadow-md flex justify-center items-center gap-2">
                 <i class="fa-solid fa-play text-xs"></i> COMENZAR DEMO
             </button>
         </div>
     </div>
 
-    <div class="email-container">
-        
-        <!-- GMAIL HEADER -->
-        <header class="bg-white p-3 flex items-center justify-between border-b border-gray-200 shadow-sm shrink-0 z-20">
-            <div class="flex items-center gap-4 w-64">
-                <i class="fa-solid fa-bars text-gray-600 text-lg p-2 cursor-pointer"></i>
-                <img src="https://ssl.gstatic.com/ui/v1/icons/mail/rfr/logo_gmail_lockup_default_1x_r2.png" alt="Gmail" class="h-6 opacity-70">
+    <div class="app-wrapper">
+        <!-- GMAIL HEADER CLONADO -->
+        <header class="flex items-center justify-between px-4 py-2 bg-[#f6f8fc] shrink-0">
+            <div class="flex items-center gap-4 w-[238px] shrink-0">
+                <div class="p-3 rounded-full hover:bg-gray-200 cursor-pointer transition">
+                    <i class="fa-solid fa-bars text-gray-600 text-[18px]"></i>
+                </div>
+                <img src="https://ssl.gstatic.com/ui/v1/icons/mail/rfr/logo_gmail_lockup_default_1x_r5.png" alt="Gmail" class="h-10">
             </div>
-            <div class="flex-1 max-w-3xl px-4 hidden md:block">
-                <div class="bg-[#f1f3f4] rounded-lg h-12 flex items-center px-4 transition focus-within:bg-white focus-within:shadow-md">
-                    <i class="fa-solid fa-magnifying-glass text-gray-500 mr-4"></i>
-                    <input type="text" value="in:inbox subject:(Tasación)" class="bg-transparent border-none outline-none w-full text-gray-700 placeholder-gray-500" readonly>
-                    <i class="fa-solid fa-sliders text-gray-500 ml-4 cursor-pointer"></i>
+            
+            <div class="flex-1 max-w-[720px] px-2">
+                <div class="bg-[#eaf1fb] hover:bg-white hover:shadow flex items-center px-4 py-2.5 rounded-full transition-all">
+                    <i class="fa-solid fa-magnifying-glass text-gray-600 ml-1 mr-4"></i>
+                    <input type="text" placeholder="Search mail" class="bg-transparent border-none outline-none w-full text-[15px] text-gray-700">
+                    <i class="fa-solid fa-sliders text-gray-600 ml-4 p-2 rounded-full hover:bg-gray-100 cursor-pointer"></i>
                 </div>
             </div>
-            <div class="flex items-center gap-3 w-64 justify-end pr-2 text-gray-600">
-                <div class="w-8 h-8 bg-blue-600 rounded-full text-white flex items-center justify-center font-bold text-sm cursor-pointer">C</div>
+            
+            <div class="flex items-center gap-1 shrink-0 px-2 text-gray-600">
+                <div class="p-2.5 rounded-full hover:bg-gray-200 cursor-pointer"><i class="fa-regular fa-circle-question text-[20px]"></i></div>
+                <div class="p-2.5 rounded-full hover:bg-gray-200 cursor-pointer"><i class="fa-solid fa-gear text-[20px]"></i></div>
+                <div class="p-2.5 rounded-full hover:bg-gray-200 cursor-pointer mr-2"><i class="fa-solid fa-braille text-[20px]"></i></div>
+                <div class="w-8 h-8 bg-blue-600 rounded-full text-white flex items-center justify-center font-bold text-sm cursor-pointer ring-2 ring-white">C</div>
             </div>
         </header>
 
+        <!-- CUERPO PRINCIPAL -->
         <div class="flex flex-1 overflow-hidden">
             
-            <!-- EMAIL CONTENT AREA -->
-            <div class="flex-1 bg-white m-0 md:m-2 md:rounded-2xl shadow-none md:shadow-sm overflow-y-auto relative scroll-smooth" id="scrollContainer">
+            <!-- LEFT SIDEBAR -->
+            <aside class="w-[256px] hidden md:flex flex-col bg-[#f6f8fc] shrink-0 py-2">
+                <div class="pl-2 mb-4">
+                    <button class="bg-[#c2e7ff] hover:bg-[#b5defb] text-[#001d35] flex items-center gap-4 px-4 py-3.5 rounded-2xl font-medium text-[14px] transition shadow-sm mx-2">
+                        <i class="fa-solid fa-pencil text-[18px]"></i>
+                        Compose
+                    </button>
+                </div>
                 
-                <!-- Toolbar -->
-                <div class="sticky top-0 bg-white border-b border-gray-100 px-4 py-2 flex items-center gap-4 text-gray-600 z-10">
-                    <i class="fa-solid fa-arrow-left p-2 hover:bg-gray-100 rounded-full cursor-pointer"></i>
-                    <i class="fa-regular fa-trash-can p-2 hover:bg-gray-100 rounded-full cursor-pointer"></i>
-                    <div class="border-l border-gray-300 h-5 mx-1"></div>
-                    <i class="fa-regular fa-envelope p-2 hover:bg-gray-100 rounded-full cursor-pointer"></i>
+                <div class="flex-1 overflow-y-auto">
+                    <div class="nav-item active">
+                        <i class="fa-solid fa-inbox"></i>
+                        <span class="flex-1">Inbox</span>
+                        <span class="text-xs font-bold mr-1">301,047</span>
+                    </div>
+                    <div class="nav-item">
+                        <i class="fa-regular fa-star"></i>
+                        <span class="flex-1">Starred</span>
+                    </div>
+                    <div class="nav-item">
+                        <i class="fa-regular fa-clock"></i>
+                        <span class="flex-1">Snoozed</span>
+                    </div>
+                    <div class="nav-item">
+                        <i class="fa-regular fa-bookmark"></i>
+                        <span class="flex-1">Important</span>
+                    </div>
+                    <div class="nav-item">
+                        <i class="fa-regular fa-paper-plane"></i>
+                        <span class="flex-1">Sent</span>
+                    </div>
+                    <div class="nav-item">
+                        <i class="fa-regular fa-file"></i>
+                        <span class="flex-1">Drafts</span>
+                        <span class="text-xs mr-1">11</span>
+                    </div>
+                    <div class="nav-item mt-4 mb-2">
+                        <span class="text-[14px] font-medium text-[#202124] pl-2">Labels</span>
+                        <i class="fa-solid fa-plus ml-auto mr-1 text-sm cursor-pointer hover:bg-gray-200 p-1.5 rounded-full"></i>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- EMAIL CONTENT AREA (Fondo blanco redondeado) -->
+            <div class="flex-1 bg-white md:rounded-2xl md:mr-4 md:mb-4 shadow-sm flex flex-col overflow-hidden relative">
+                
+                <!-- Toolbar Pegajoso dentro del div blanco -->
+                <div class="sticky top-0 bg-white px-2 py-2 flex items-center justify-between text-[#444746] z-10">
+                    <div class="flex items-center gap-1">
+                        <div class="p-2.5 rounded-full hover:bg-[#f1f3f4] cursor-pointer" title="Back to Inbox"><i class="fa-solid fa-arrow-left text-[15px]"></i></div>
+                        <div class="w-[1px] h-5 bg-gray-200 mx-2"></div>
+                        <div class="p-2.5 rounded-full hover:bg-[#f1f3f4] cursor-pointer" title="Archive"><i class="fa-solid fa-box-archive text-[15px]"></i></div>
+                        <div class="p-2.5 rounded-full hover:bg-[#f1f3f4] cursor-pointer" title="Report spam"><i class="fa-solid fa-circle-exclamation text-[15px]"></i></div>
+                        <div class="p-2.5 rounded-full hover:bg-[#f1f3f4] cursor-pointer" title="Delete"><i class="fa-regular fa-trash-can text-[15px]"></i></div>
+                        <div class="w-[1px] h-5 bg-gray-200 mx-2"></div>
+                        <div class="p-2.5 rounded-full hover:bg-[#f1f3f4] cursor-pointer" title="Mark as unread"><i class="fa-regular fa-envelope text-[15px]"></i></div>
+                        <div class="p-2.5 rounded-full hover:bg-[#f1f3f4] cursor-pointer" title="Snooze"><i class="fa-regular fa-clock text-[15px]"></i></div>
+                        <div class="p-2.5 rounded-full hover:bg-[#f1f3f4] cursor-pointer" title="Add to tasks"><i class="fa-regular fa-circle-check text-[15px]"></i></div>
+                        <div class="w-[1px] h-5 bg-gray-200 mx-2"></div>
+                        <div class="p-2.5 rounded-full hover:bg-[#f1f3f4] cursor-pointer" title="Move to"><i class="fa-solid fa-folder-arrow-down text-[15px]"></i></div>
+                        <div class="p-2.5 rounded-full hover:bg-[#f1f3f4] cursor-pointer" title="Labels"><i class="fa-solid fa-tag text-[15px]"></i></div>
+                        <div class="p-2.5 rounded-full hover:bg-[#f1f3f4] cursor-pointer" title="More"><i class="fa-solid fa-ellipsis-vertical text-[15px]"></i></div>
+                    </div>
+                    <div class="flex items-center gap-2 pr-2">
+                        <span class="text-xs">5 of 335,379</span>
+                        <div class="p-2 rounded-full hover:bg-[#f1f3f4] cursor-pointer"><i class="fa-solid fa-chevron-left text-[12px]"></i></div>
+                        <div class="p-2 rounded-full hover:bg-[#f1f3f4] cursor-pointer"><i class="fa-solid fa-chevron-right text-[12px]"></i></div>
+                    </div>
                 </div>
 
-                <div class="px-4 md:px-8 py-6 max-w-4xl mx-auto">
+                <!-- Scrollable Content -->
+                <div class="flex-1 overflow-y-auto px-4 md:px-14 py-4" id="scrollContainer">
                     
-                    <!-- Subject -->
-                    <div class="flex justify-between items-start mb-8">
-                        <h1 class="text-[20px] md:text-[22px] text-[#1f1f1f] leading-tight font-medium">Re: Sobre la tasación de tu coche y el salto a la etiqueta ECO <span class="text-xs bg-gray-200 text-gray-600 px-2 py-0.5 rounded ml-2 align-middle font-normal">Inbox</span></h1>
+                    <!-- Subject (Diseño clonado) -->
+                    <div class="flex items-center justify-between mb-8 pl-12 pr-4 mt-2">
+                        <div class="flex items-center gap-3 flex-wrap">
+                            <h1 class="text-[22px] text-[#1f1f1f] font-normal leading-tight">Sobre la tasación de tu coche y el salto a la etiqueta ECO</h1>
+                            <span class="bg-[#e8eaed] text-[#3c4043] text-[11px] font-medium px-2 py-0.5 rounded flex items-center gap-1.5 cursor-pointer hover:bg-gray-300">
+                                Inbox <i class="fa-solid fa-xmark text-[10px]"></i>
+                            </span>
+                        </div>
+                        <div class="flex gap-2">
+                            <i class="fa-solid fa-print p-2 rounded hover:bg-gray-100 cursor-pointer text-gray-500"></i>
+                            <i class="fa-solid fa-arrow-up-right-from-square p-2 rounded hover:bg-gray-100 cursor-pointer text-gray-500"></i>
+                        </div>
                     </div>
 
                     <!-- EMAIL 1: MKT DOMINGO ALONSO -->
-                    <div class="email-item mb-2 border border-gray-200 rounded-lg overflow-hidden" id="email1">
-                        <div class="bg-gray-50 px-4 py-3 cursor-pointer flex justify-between items-center border-b border-gray-100">
-                            <div class="flex items-center gap-3">
-                                <span class="font-bold text-sm text-[#1f1f1f]">Domingo Alonso Ocasión</span>
-                                <span class="text-xs text-gray-500 hidden md:inline">&lt;hola@domingoalonsoocasion.com&gt;</span>
-                            </div>
-                            <span class="text-xs text-gray-500">09:00 AM</span>
-                        </div>
-                        
-                        <!-- BODY DEL EMAIL -->
-                        <div class="p-6 md:p-8 bg-white clean-email" style="max-width: 650px; margin: 0 auto;">
-                            
-                            <!-- Logo Text -->
-                            <div class="text-center mb-8">
-                                <h2 class="da-blue" style="font-weight: 800; font-size: 22px; letter-spacing: -0.5px;">
-                                    DOMINGO ALONSO <span style="font-weight: 400;">OCASIÓN</span>
-                                </h2>
-                                <div style="height: 2px; width: 40px; background-color: #059669; margin: 10px auto 0;"></div>
-                            </div>
-
-                            <!-- Botón Agentforce -->
-                            <div class="text-center mb-6">
-                                <span class="btn-agentforce">
-                                    <i class="fa-solid fa-robot da-blue"></i> AGENTE DOMINGO ALONSO
-                                </span>
-                            </div>
-
-                            <!-- Titular -->
-                            <div class="text-center mb-6">
-                                <h1 style="font-size: 24px; md:font-size: 26px; font-weight: 800; line-height: 1.2; margin-bottom: 15px; color: #002b49;">
-                                    Compramos tu coche.<br>Rápido, seguro y al mejor precio.
-                                </h1>
-                                <p style="font-size: 14px; md:font-size: 15px; color: #4b5563; font-weight: 400; line-height: 1.6; max-width: 500px; margin: 0 auto;">
-                                    ¿Pensando en renovar tu vehículo? En Domingo Alonso Ocasión tasamos tu coche en el acto. Consigue liquidez inmediata o utilízalo como entrada para tu próximo vehículo.
-                                </p>
-                            </div>
-
-                            <!-- Call to Action Banner -->
-                            <div class="mt-8">
-                                <div class="promo-card">
-                                    <h3 style="font-size: 18px; md:font-size: 20px; font-weight: 700; margin-bottom: 10px;">Descubre cuánto vale en 2 minutos</h3>
-                                    <p style="font-size: 13px; color: #9ca3af; margin-bottom: 20px;">100% online y sin compromiso.</p>
-                                    <a href="#" class="btn-primary" style="max-width: 250px; margin: 0 auto;">TASAR MI COCHE AHORA</a>
+                    <div class="email-item mb-2" id="email1">
+                        <div class="flex items-start gap-3 mb-2">
+                            <div class="w-10 h-10 rounded-full bg-blue-100 text-blue-700 font-bold flex items-center justify-center shrink-0">D</div>
+                            <div class="flex-1 min-w-0">
+                                <div class="flex justify-between items-start">
+                                    <div class="flex flex-col">
+                                        <span class="font-bold text-[14px] text-[#202124]">Domingo Alonso Ocasión <span class="text-xs font-normal text-gray-500">&lt;hola@domingoalonsoocasion.com&gt;</span></span>
+                                        <span class="text-xs text-gray-500 flex items-center gap-1">to me <i class="fa-solid fa-caret-down text-[10px]"></i></span>
+                                    </div>
+                                    <div class="flex items-center gap-3 text-gray-500">
+                                        <span class="text-xs">09:00 AM (hace 4 horas)</span>
+                                        <i class="fa-regular fa-star cursor-pointer hover:text-gray-700"></i>
+                                        <i id="replyIcon1" class="fa-solid fa-reply cursor-pointer hover:text-gray-700" title="Reply"></i>
+                                        <i class="fa-solid fa-ellipsis-vertical cursor-pointer hover:text-gray-700"></i>
+                                    </div>
                                 </div>
                             </div>
+                        </div>
+                        
+                        <!-- BODY DEL EMAIL (Centrado con padding) -->
+                        <div class="pl-0 md:pl-12 mt-4 pb-8 border-b border-gray-100 relative">
+                            <div class="bg-white clean-email border border-gray-200 rounded-lg shadow-sm overflow-hidden" style="max-width: 650px;">
+                                
+                                <!-- Cabecera Corporativa Domingo Alonso -->
+                                <div class="bg-[#185c9d] px-6 md:px-8 py-8 flex items-center gap-6">
+                                    <div class="h-[2px] bg-white flex-1 mt-1"></div>
+                                    <img src="https://jcompan.github.io/domingoalonso/logo_email_dag_ocasion.png" alt="Domingo Alonso Ocasión" class="h-8 md:h-10">
+                                </div>
 
+                                <div class="p-6 md:p-8">
+                                    <!-- Botón Agentforce -->
+                                    <div class="text-center mb-6">
+                                        <span class="btn-agentforce">
+                                            <i class="fa-solid fa-robot da-blue"></i> AGENTE DOMINGO ALONSO
+                                        </span>
+                                    </div>
+
+                                    <!-- Titular -->
+                                    <div class="text-center mb-8">
+                                        <h1 style="font-size: 24px; font-weight: 800; line-height: 1.2; margin-bottom: 15px; color: #002b49;">
+                                            Tasamos tu coche.<br>A tu ritmo y desde donde quieras.
+                                        </h1>
+                                        <p style="font-size: 14px; color: #4b5563; font-weight: 400; line-height: 1.6; max-width: 520px; margin: 0 auto;">
+                                            Queremos ponerte las cosas fáciles. Descubre el valor de tu vehículo de la forma más cómoda: sin papeleos ni esperas. Solo tienes que seguir la conversación en este mismo correo y nosotros nos encargaremos de todo lo demás.
+                                        </p>
+                                    </div>
+
+                                    <!-- Pasos del Proceso (Basado en el flow web) -->
+                                    <div class="mb-10 max-w-[480px] mx-auto bg-[#f8f9fa] border border-gray-100 rounded-xl p-5 md:p-6 text-left shadow-sm">
+                                        <h3 class="font-bold text-[#002b49] mb-5 text-[15px] text-center uppercase tracking-wide">Así de fácil es el proceso:</h3>
+                                        
+                                        <div class="space-y-5">
+                                            <div class="flex items-start gap-4">
+                                                <div class="w-8 h-8 rounded-full bg-[#002b49] text-white flex items-center justify-center font-bold text-sm shrink-0 shadow-md">1</div>
+                                                <div class="mt-1">
+                                                    <h4 class="font-bold text-[#111827] text-[14px] uppercase"><i class="fa-regular fa-user mr-1 text-gray-400"></i> Datos de Contacto</h4>
+                                                    <p class="text-[13px] text-gray-500 mt-1 leading-snug">Cuéntanos que estás interesado y facilítanos tu nombre, teléfono y en qué Isla te encuentras.</p>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="flex items-start gap-4">
+                                                <div class="w-8 h-8 rounded-full bg-[#002b49] text-white flex items-center justify-center font-bold text-sm shrink-0 shadow-md">2</div>
+                                                <div class="mt-1">
+                                                    <h4 class="font-bold text-[#111827] text-[14px] uppercase"><i class="fa-solid fa-car-side mr-1 text-gray-400"></i> Datos del Vehículo</h4>
+                                                    <p class="text-[13px] text-gray-500 mt-1 leading-snug">Te pediremos los datos básicos para valorar tu coche: Marca, modelo, matrícula, potencia y kilómetros actuales.</p>
+                                                </div>
+                                            </div>
+
+                                            <div class="flex items-start gap-4">
+                                                <div class="w-8 h-8 rounded-full bg-[#002b49] text-white flex items-center justify-center font-bold text-sm shrink-0 shadow-md">3</div>
+                                                <div class="mt-1">
+                                                    <h4 class="font-bold text-[#111827] text-[14px] uppercase"><i class="fa-solid fa-camera mr-1 text-gray-400"></i> Fotos desde tu móvil</h4>
+                                                    <p class="text-[13px] text-gray-500 mt-1 leading-snug">Saca un par de fotos (del exterior y del salpicadero encendido) y adjúntalas directamente en la conversación.</p>
+                                                </div>
+                                            </div>
+
+                                            <div class="flex items-start gap-4">
+                                                <div class="w-8 h-8 rounded-full bg-[#059669] text-white flex items-center justify-center font-bold text-sm shrink-0 shadow-md">
+                                                    <i class="fa-solid fa-check"></i>
+                                                </div>
+                                                <div class="mt-1">
+                                                    <h4 class="font-bold text-[#059669] text-[14px] uppercase"><i class="fa-regular fa-thumbs-up mr-1 opacity-70"></i> ¡Recibe tu oferta!</h4>
+                                                    <p class="text-[13px] text-gray-500 mt-1 leading-snug">Nuestro Agente Inteligente procesará todo al instante y te dará una valoración firme para tu vehículo.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Call to Action Banner (Nuevo Diseño Estilo 'This email can talk back') -->
+                                    <div class="mt-10 relative bg-[#eaf1fb] rounded-2xl p-8 md:p-10 text-center overflow-hidden border border-[#c2e7ff] shadow-sm">
+                                        <!-- Iconos decorativos simulando el estilo de la imagen -->
+                                        <div class="absolute top-6 left-4 md:left-10 opacity-90 transform -rotate-12">
+                                            <span class="text-3xl md:text-4xl">💬</span>
+                                        </div>
+                                        <div class="absolute bottom-4 right-4 md:right-10 opacity-90 transform rotate-6">
+                                            <span class="text-4xl md:text-5xl">🤖</span>
+                                        </div>
+                                        <div class="absolute top-6 right-1/4 opacity-70 hidden md:block transform rotate-12">
+                                            <span class="text-2xl">✨</span>
+                                        </div>
+                                        <div class="absolute bottom-6 left-1/4 opacity-60 hidden md:block transform -rotate-12">
+                                            <span class="text-xl">😄</span>
+                                        </div>
+
+                                        <h3 class="text-[24px] md:text-[28px] font-extrabold text-[#002b49] tracking-tight mb-3 relative z-10 leading-tight">
+                                            Este email te responde.
+                                        </h3>
+                                        <p class="text-[15px] md:text-[17px] font-medium text-[#444746] relative z-10">
+                                            Pulsa <span class="text-[#e60000] font-bold text-[17px] md:text-[19px]">'Responder'</span> para iniciar la conversación.
+                                        </p>
+                                    </div>
+                                </div>
+
+                            </div>
+                            
+                            <!-- BOTÓN REPLY DE EMAIL 1 -->
+                            <div class="mt-4 flex gap-3" id="replyArea1">
+                                <button id="replyBtn1" class="border border-gray-300 rounded-full px-6 py-2 text-[#444746] font-medium text-[14px] hover:bg-[#f1f3f4] transition flex items-center gap-2 cursor-pointer shadow-sm">
+                                    <i class="fa-solid fa-reply"></i> Reply
+                                </button>
+                                <button class="border border-gray-300 rounded-full px-6 py-2 text-[#444746] font-medium text-[14px] hover:bg-[#f1f3f4] transition flex items-center gap-2 cursor-pointer shadow-sm">
+                                    <i class="fa-solid fa-arrow-right"></i> Forward
+                                </button>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- EMAIL 2: CARLOS (RESPUESTA CLIENTE) -->
-                    <div class="email-item mb-6 relative group" id="email2">
-                        <div class="flex items-start gap-3 md:gap-4">
-                            <div class="w-10 h-10 bg-blue-600 rounded-full text-white flex items-center justify-center font-bold text-lg shrink-0">C</div>
-                            <div class="flex-1 min-w-0">
-                                <div class="flex flex-col md:flex-row md:justify-between md:items-baseline">
-                                    <span class="font-bold text-[#1f1f1f] text-sm">Carlos <span class="text-gray-500 font-normal hidden md:inline">&lt;carlos.gomez@gmail.com&gt;</span></span>
-                                    <span class="text-xs text-gray-500 mt-1 md:mt-0">10:15 AM (hace 2 horas)</span>
+                    <!-- COMPOSE 1: CARLOS ESCRIBIENDO SU PRIMERA RESPUESTA -->
+                    <div class="email-item pt-4" id="compose1">
+                        <div class="flex items-start gap-3 mb-2">
+                            <div class="w-10 h-10 bg-blue-600 rounded-full text-white flex items-center justify-center font-bold text-lg shrink-0 z-10 shadow-sm">C</div>
+                            <div class="flex-1 border border-gray-200 rounded-xl shadow-lg bg-white overflow-hidden flex flex-col relative mt-1">
+                                <div class="px-4 py-2 border-b border-gray-100 flex items-center text-[13px] text-gray-500 bg-gray-50">
+                                    <i class="fa-solid fa-reply mr-2 text-gray-400"></i>
+                                    <span class="mr-2">Para:</span>
+                                    <span class="bg-white px-2 py-0.5 rounded-md border border-gray-200 text-gray-700 flex items-center gap-1 shadow-sm">Domingo Alonso Ocasión <i class="fa-solid fa-xmark text-[10px] ml-1"></i></span>
                                 </div>
-                                <div class="text-xs text-gray-500 hidden md:block">para Domingo Alonso</div>
-                                <div class="mt-3 text-sm text-[#202124] leading-relaxed">
+                                <div class="p-5 text-[14px] text-[#202124] min-h-[120px] outline-none bg-white leading-relaxed" contenteditable="false">
                                     <p>Hola,</p>
                                     <p class="mt-2">He visto vuestro correo y la verdad es que me pica la curiosidad. Nunca he vendido un coche y no sé muy bien cómo va esto.</p>
                                     <p class="mt-2">Tengo un <strong>Volkswagen Passat Variant de hace 15 años</strong>. Ha sido una maravilla, pero ya tiene <strong>250.000 kms</strong> y con las nuevas normativas de emisiones me están prohibiendo entrar en el centro de mi ciudad.</p>
                                     <p class="mt-2">¿Compráis coches tan antiguos y con tantos kilómetros? Más que el dinero en sí, me interesaría saber si hay posibilidad de entregar este coche viejo como entrada para compraros uno más moderno de ocasión que tenga la <strong>etiqueta ECO</strong>. ¿Cómo sería el proceso?</p>
-                                    <p class="mt-2">Gracias y un saludo,<br>Carlos</p>
+                                    <p class="mt-3">Gracias y un saludo,<br>Carlos</p>
+                                </div>
+                                <div class="px-4 py-3 bg-gray-50 flex items-center justify-between border-t border-gray-100">
+                                    <div class="flex gap-1 items-center">
+                                        <button id="sendBtn1" class="bg-[#0b57d0] hover:bg-[#0842a0] text-white px-6 py-2 rounded-full font-medium text-sm transition shadow-sm mr-2 cursor-pointer">Send</button>
+                                        <i class="fa-solid fa-font text-gray-500 hover:bg-gray-200 p-2.5 rounded cursor-pointer hidden sm:block"></i>
+                                        <i class="fa-solid fa-paperclip text-gray-500 hover:bg-gray-200 p-2.5 rounded cursor-pointer"></i>
+                                        <i class="fa-regular fa-face-smile text-gray-500 hover:bg-gray-200 p-2.5 rounded cursor-pointer hidden sm:block"></i>
+                                        <i class="fa-regular fa-image text-gray-500 hover:bg-gray-200 p-2.5 rounded cursor-pointer"></i>
+                                    </div>
+                                    <i class="fa-regular fa-trash-can text-gray-500 hover:bg-gray-200 p-2.5 rounded cursor-pointer"></i>
                                 </div>
                             </div>
                         </div>
-                        <div class="border-b border-gray-200 mt-6"></div>
+                    </div>
+
+                    <!-- EMAIL 2: CARLOS (RESPUESTA CLIENTE) -->
+                    <div class="email-item pt-4" id="email2">
+                        <div class="flex items-start gap-3 mb-2">
+                            <div class="w-10 h-10 bg-blue-600 rounded-full text-white flex items-center justify-center font-bold text-lg shrink-0">C</div>
+                            <div class="flex-1 min-w-0">
+                                <div class="flex justify-between items-start">
+                                    <div class="flex flex-col">
+                                        <span class="font-bold text-[14px] text-[#202124]">Carlos Gomez <span class="text-xs font-normal text-gray-500">&lt;carlos.gomez@gmail.com&gt;</span></span>
+                                        <span class="text-xs text-gray-500 flex items-center gap-1">to Domingo Alonso <i class="fa-solid fa-caret-down text-[10px]"></i></span>
+                                    </div>
+                                    <div class="flex items-center gap-3 text-gray-500">
+                                        <span class="text-xs">10:15 AM (hace 2 horas)</span>
+                                        <i class="fa-regular fa-star cursor-pointer hover:text-gray-700"></i>
+                                        <i class="fa-solid fa-reply cursor-pointer hover:text-gray-700"></i>
+                                        <i class="fa-solid fa-ellipsis-vertical cursor-pointer hover:text-gray-700"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="pl-0 md:pl-12 mt-2 pb-6 border-b border-gray-100">
+                            <div class="text-[14px] text-[#202124] leading-relaxed max-w-3xl">
+                                <p>Hola,</p>
+                                <p class="mt-2">He visto vuestro correo y la verdad es que me pica la curiosidad. Nunca he vendido un coche y no sé muy bien cómo va esto.</p>
+                                <p class="mt-2">Tengo un <strong>Volkswagen Passat Variant de hace 15 años</strong>. Ha sido una maravilla, pero ya tiene <strong>250.000 kms</strong> y con las nuevas normativas de emisiones me están prohibiendo entrar en el centro de mi ciudad.</p>
+                                <p class="mt-2">¿Compráis coches tan antiguos y con tantos kilómetros? Más que el dinero en sí, me interesaría saber si hay posibilidad de entregar este coche viejo como entrada para compraros uno más moderno de ocasión que tenga la <strong>etiqueta ECO</strong>. ¿Cómo sería el proceso?</p>
+                                <p class="mt-3">Gracias y un saludo,<br>Carlos</p>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- EMAIL 3: AGENTFORCE (RESPUESTA IA) -->
-                    <div class="email-item mb-10" id="email3">
-                        <div class="flex items-start gap-3 md:gap-4">
-                            <div class="w-10 h-10 border border-gray-200 rounded-full p-0.5 bg-white shrink-0 shadow-sm flex items-center justify-center">
-                                <img src="https://jcompan.github.io/domingoalonso/domingo_alonso_logo.jpg" alt="Domingo Alonso" class="w-full h-full object-cover rounded-full">
+                    <div class="email-item pt-4" id="email3">
+                        <div class="flex items-start gap-3 mb-2">
+                            <div class="w-10 h-10 border border-gray-200 rounded-full bg-white shrink-0 overflow-hidden">
+                                <img src="https://jcompan.github.io/domingoalonso/domingo_alonso_logo.jpg" alt="Domingo Alonso" class="w-full h-full object-cover">
                             </div>
-                            <div class="flex-1">
-                                <div class="flex flex-col md:flex-row md:justify-between md:items-baseline">
-                                    <span class="font-bold text-[#1f1f1f] text-sm">Agente Domingo Alonso</span>
-                                    <div class="flex items-center gap-4 mt-1 md:mt-0">
-                                        <span class="text-xs text-gray-500">12:30 PM (ahora mismo)</span>
-                                        <div class="flex gap-2 text-gray-500 hidden md:flex">
-                                            <i class="fa-solid fa-reply hover:text-gray-800 cursor-pointer"></i>
-                                        </div>
+                            <div class="flex-1 min-w-0">
+                                <div class="flex justify-between items-start">
+                                    <div class="flex flex-col">
+                                        <span class="font-bold text-[14px] text-[#202124]">Agente Domingo Alonso <span class="text-xs font-normal text-gray-500">&lt;agente@domingoalonsoocasion.com&gt;</span></span>
+                                        <span class="text-xs text-gray-500 flex items-center gap-1">to me <i class="fa-solid fa-caret-down text-[10px]"></i></span>
+                                    </div>
+                                    <div class="flex items-center gap-3 text-gray-500">
+                                        <span class="text-xs">12:30 PM (hace 1 hora)</span>
+                                        <i class="fa-regular fa-star cursor-pointer hover:text-gray-700"></i>
+                                        <i id="replyIcon2" class="fa-solid fa-reply cursor-pointer hover:text-gray-700" title="Reply"></i>
+                                        <i class="fa-solid fa-ellipsis-vertical cursor-pointer hover:text-gray-700"></i>
                                     </div>
                                 </div>
-                                <div class="text-xs text-gray-500 hidden md:block">para mí</div>
+                            </div>
+                        </div>
+
+                        <div class="pl-0 md:pl-12 mt-2 pb-6 border-b border-gray-100 relative">
+                            <div class="text-[14px] text-[#202124] leading-relaxed max-w-3xl">
+                                <p>Hola Carlos,</p>
+                                <p class="mt-2">Es completamente normal tener dudas si nunca has vendido un coche. Primero de todo: <strong>qué gran compañero de viaje tienes</strong>. Los motores del Passat Variant de esa época son auténticos "devorakilómetros", muy valorados por su robustez mecánica. Y sí, <strong>por supuesto que lo compramos</strong>.</p>
                                 
-                                <!-- EMAIL BODY CONTENT -->
-                                <div class="mt-4 text-sm text-[#202124] leading-relaxed">
-                                    <p>Hola Carlos,</p>
-                                    <p class="mt-2">Es completamente normal tener dudas si nunca has vendido un coche. Primero de todo: <strong>qué gran compañero de viaje tienes</strong>. Los motores del Passat Variant de esa época son auténticos "devorakilómetros", muy valorados por su robustez mecánica. Y sí, <strong>por supuesto que lo compramos</strong>.</p>
+                                <p class="mt-3">Entregar tu Passat como parte de pago para dar el salto a un vehículo con <span class="bg-green-100 text-green-800 px-1.5 py-0.5 rounded font-semibold text-xs border border-green-200"><i class="fa-solid fa-leaf mr-1"></i>ECO</span> es la opción más inteligente ahora mismo. Te quitas el problema de las restricciones y te olvidas del papeleo. Nosotros nos encargamos de todo.</p>
+
+                                <h3 class="font-bold text-[#002b49] mt-6 mb-3"><i class="fa-solid fa-route mr-2"></i> Así de sencillo es el proceso:</h3>
+                                <div class="bg-[#f8f9fa] border border-gray-200 rounded-lg p-4 mb-5">
+                                    <ol class="list-decimal list-inside space-y-3 text-gray-700">
+                                        <li><strong>Tasación Transparente:</strong> Traes el Passat a nuestras instalaciones. Al ser un VW, conocemos perfectamente su valor.</li>
+                                        <li><strong>Elegimos tu nuevo ECO:</strong> Buscamos un modelo que te encaje. <span class="bg-yellow-100 px-1 rounded">He analizado nuestro stock y he seleccionado varias opciones para ti. 👇</span></li>
+                                        <li><strong>Descuento Directo:</strong> El valor de tasación de tu Passat se resta automáticamente del precio del nuevo coche.</li>
+                                        <li><strong>Cambio de llaves:</strong> Dejas tu viejo coche y sales conduciendo el nuevo. Nosotros hacemos el cambio de nombre.</li>
+                                    </ol>
+                                </div>
+
+                                <!-- RECOMENDACIONES IA -->
+                                <h3 class="font-bold text-[#002b49] mt-6 mb-3"><i class="fa-solid fa-wand-magic-sparkles mr-2 text-purple-600"></i> Mis recomendaciones basadas en tu perfil:</h3>
+                                <div class="flex gap-4 overflow-x-auto pb-4 mb-2 snap-x">
                                     
-                                    <p class="mt-3">Entregar tu Passat como parte de pago para dar el salto a un vehículo con <span class="bg-green-100 text-green-800 px-1.5 py-0.5 rounded font-semibold text-xs border border-green-200"><i class="fa-solid fa-leaf mr-1"></i>ECO</span> es la opción más inteligente ahora mismo. Te quitas el problema de las restricciones y te olvidas del papeleo. Nosotros nos encargamos de todo.</p>
-
-                                    <h3 class="font-bold text-[#002b49] mt-6 mb-3"><i class="fa-solid fa-route mr-2"></i> Así de sencillo es el proceso:</h3>
-                                    <div class="bg-gray-50 border border-gray-100 rounded-lg p-4 mb-5">
-                                        <ol class="list-decimal list-inside space-y-3 text-gray-700">
-                                            <li><strong>Tasación Transparente:</strong> Traes el Passat a nuestras instalaciones. Al ser un VW, conocemos perfectamente su valor.</li>
-                                            <li><strong>Elegimos tu nuevo ECO:</strong> Buscamos un modelo que te encaje. <span class="bg-yellow-100 px-1 rounded">He analizado nuestro stock y tengo una sugerencia para ti más abajo. 👇</span></li>
-                                            <li><strong>Descuento Directo:</strong> El valor de tasación de tu Passat se resta automáticamente del precio del nuevo coche.</li>
-                                            <li><strong>Cambio de llaves:</strong> Dejas tu viejo coche y sales conduciendo el nuevo. Nosotros hacemos el cambio de nombre.</li>
-                                        </ol>
-                                    </div>
-
-                                    <!-- RECOMENDACIÓN IA -->
-                                    <h3 class="font-bold text-[#002b49] mt-6 mb-3"><i class="fa-solid fa-wand-magic-sparkles mr-2 text-purple-600"></i> Mi recomendación basada en tu perfil:</h3>
-                                    <div class="flex items-center gap-4 bg-white border border-[#059669] rounded-lg p-3 shadow-sm max-w-lg mb-6 relative overflow-hidden">
-                                        <div class="absolute top-0 right-0 bg-[#059669] text-white text-[10px] font-bold px-2 py-1 rounded-bl-lg">MATCH IA: 94%</div>
-                                        <img src="https://images.unsplash.com/photo-1609521263047-f8f205293f24?auto=format&fit=crop&q=80&w=200" alt="VW Golf" class="w-24 h-24 object-cover rounded-md border border-gray-200">
-                                        <div>
-                                            <h4 class="font-bold text-[#002b49] text-base">VW Golf 1.5 eTSI <span class="bg-green-100 text-green-800 px-1.5 py-0.5 rounded text-[10px] align-top ml-1">ECO</span></h4>
-                                            <p class="text-xs text-gray-500 mt-1">2021 • 34.000 km • Automático DSG</p>
-                                            <p class="text-[13px] text-gray-700 mt-1.5 leading-tight">Mantiene el ADN y aplomo de tu Passat, pero con tecnología microhíbrida para que entres al centro sin multas.</p>
+                                    <!-- Card 1: Golf -->
+                                    <div class="min-w-[240px] w-[240px] bg-white border border-[#059669] rounded-lg p-3 shadow-sm relative shrink-0 snap-start flex flex-col">
+                                        <div class="absolute top-0 right-0 bg-[#059669] text-white text-[10px] font-bold px-2 py-1 rounded-bl-lg z-10">MATCH: 94%</div>
+                                        <img src="https://images.unsplash.com/photo-1609521263047-f8f205293f24?auto=format&fit=crop&q=80&w=300" alt="VW Golf" class="w-full h-32 object-cover rounded-md border border-gray-200 mb-3">
+                                        <div class="flex-1">
+                                            <h4 class="font-bold text-[#002b49] text-[14px]">VW Golf 1.5 eTSI <span class="bg-green-100 text-green-800 px-1.5 py-0.5 rounded text-[9px] align-top ml-1">ECO</span></h4>
+                                            <p class="text-[11px] text-gray-500 mt-1">2021 • 34.000 km • Aut. DSG</p>
+                                            <p class="text-[12px] text-gray-700 mt-2 leading-tight">Mantiene el ADN de tu Passat, pero con tecnología microhíbrida para entrar al centro.</p>
                                         </div>
                                     </div>
 
-                                    <!-- TABLA COMPARATIVA IA -->
-                                    <div class="my-5 border border-gray-200 rounded-lg overflow-x-auto bg-white shadow-sm max-w-2xl">
-                                        <table class="w-full text-left border-collapse min-w-[500px]">
-                                            <thead>
-                                                <tr class="bg-gray-50 border-b border-gray-200">
-                                                    <th class="p-3 text-xs font-bold text-gray-500 uppercase w-1/3">Al vender un coche...</th>
-                                                    <th class="p-3 text-xs font-bold text-gray-500 uppercase w-1/3">Por tu cuenta</th>
-                                                    <th class="p-3 text-xs font-bold text-[#059669] uppercase w-1/3">Plan Renove D. Alonso</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody class="text-sm">
-                                                <tr class="border-b border-gray-100">
-                                                    <td class="p-3 font-medium text-gray-700 bg-gray-50/50">Trámites DGT</td>
-                                                    <td class="p-3 text-red-600">Pagas tasas y vas a Tráfico</td>
-                                                    <td class="p-3 text-green-600 font-medium">100% Gratis y automático</td>
-                                                </tr>
-                                                <tr class="border-b border-gray-100">
-                                                    <td class="p-3 font-medium text-gray-700 bg-gray-50/50">Garantía Mecánica</td>
-                                                    <td class="p-3 text-red-600">Das 6 meses al comprador</td>
-                                                    <td class="p-3 text-green-600 font-medium">Nosotros asumimos el riesgo</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
+                                    <!-- Card 2: Octavia Combi -->
+                                    <div class="min-w-[240px] w-[240px] bg-white border border-gray-200 rounded-lg p-3 shadow-sm relative shrink-0 snap-start flex flex-col">
+                                        <div class="absolute top-0 right-0 bg-blue-100 text-blue-800 text-[10px] font-bold px-2 py-1 rounded-bl-lg z-10">FAMILIAR</div>
+                                        <img src="https://images.unsplash.com/photo-1629897048514-3dd74142eff4?auto=format&fit=crop&q=80&w=300" alt="Skoda Octavia" class="w-full h-32 object-cover rounded-md border border-gray-200 mb-3">
+                                        <div class="flex-1">
+                                            <h4 class="font-bold text-[#002b49] text-[14px]">Skoda Octavia Combi <span class="bg-green-100 text-green-800 px-1.5 py-0.5 rounded text-[9px] align-top ml-1">ECO</span></h4>
+                                            <p class="text-[11px] text-gray-500 mt-1">2022 • 28.000 km • 1.5 mHEV</p>
+                                            <p class="text-[12px] text-gray-700 mt-2 leading-tight">El sustituto natural de tu Variant. Mismo espacio familiar y etiqueta ECO.</p>
+                                        </div>
                                     </div>
 
-                                    <!-- SOLICITUD DE DATOS (REEMPLAZA FORMULARIO WEB) -->
-                                    <p class="mt-4">Para darte una <strong>tasación exacta ahora mismo</strong> sin que tengas que rellenar largos formularios en la web, solo necesito que me respondas a este correo con lo siguiente:</p>
-                                    
-                                    <ul class="list-disc list-inside space-y-2 mb-5 mt-3 text-gray-700 ml-1">
-                                        <li><strong>Tu vehículo:</strong> Matrícula y motor exacto (cilindrada/potencia).</li>
-                                        <li><strong>Contacto:</strong> Un teléfono y en qué Isla te encuentras para asignarte tu centro más cercano.</li>
-                                        <li><strong>Fotos:</strong> Adjunta aquí mismo un par de fotos (una frontal y otra del salpicadero encendido donde se vean los km).</li>
-                                    </ul>
+                                    <!-- Card 3: Audi Q3 / SUV -->
+                                    <div class="min-w-[240px] w-[240px] bg-white border border-gray-200 rounded-lg p-3 shadow-sm relative shrink-0 snap-start flex flex-col">
+                                        <div class="absolute top-0 right-0 bg-purple-100 text-purple-800 text-[10px] font-bold px-2 py-1 rounded-bl-lg z-10">SUV PREMIUM</div>
+                                        <img src="https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?auto=format&fit=crop&q=80&w=300" alt="Audi Q3" class="w-full h-32 object-cover rounded-md border border-gray-200 mb-3">
+                                        <div class="flex-1">
+                                            <h4 class="font-bold text-[#002b49] text-[14px]">Audi Q3 Sportback <span class="bg-green-100 text-green-800 px-1.5 py-0.5 rounded text-[9px] align-top ml-1">ECO</span></h4>
+                                            <p class="text-[11px] text-gray-500 mt-1">2021 • 45.000 km • Mild Hybrid</p>
+                                            <p class="text-[12px] text-gray-700 mt-2 leading-tight">Si quieres dar el salto a un formato SUV más elevado, cómodo y sofisticado.</p>
+                                        </div>
+                                    </div>
 
-                                    <p>En cuanto me respondas, la inteligencia artificial procesará las imágenes y los datos para darte tu oferta de compra al instante. ¡Así de fácil!</p>
                                 </div>
+
+                                <!-- SOLICITUD DE DATOS (REEMPLAZA FORMULARIO WEB) -->
+                                <p class="mt-4">Para darte una <strong>tasación exacta ahora mismo</strong> sin que tengas que rellenar largos formularios en la web, solo necesito que me respondas a este correo con lo siguiente:</p>
+                                
+                                <ul class="list-disc list-inside space-y-2 mb-5 mt-3 text-gray-700 ml-1">
+                                    <li><strong>Tu vehículo:</strong> Matrícula y motor exacto (cilindrada/potencia).</li>
+                                    <li><strong>Contacto:</strong> Un teléfono y en qué Isla te encuentras.</li>
+                                    <li><strong>Fotos:</strong> Adjunta aquí mismo un par de fotos (una frontal y otra del salpicadero donde se vean los km).</li>
+                                </ul>
+
+                                <p>En cuanto me respondas, la inteligencia artificial procesará las imágenes y los datos para darte tu oferta de compra al instante. ¡Así de fácil!</p>
+                            </div>
+                            
+                            <!-- BOTÓN REPLY DE EMAIL 3 -->
+                            <div class="mt-4 flex gap-3" id="replyArea2">
+                                <button id="replyBtn2" class="border border-gray-300 rounded-full px-6 py-2 text-[#444746] font-medium text-[14px] hover:bg-[#f1f3f4] transition flex items-center gap-2 cursor-pointer shadow-sm">
+                                    <i class="fa-solid fa-reply"></i> Reply
+                                </button>
+                                <button class="border border-gray-300 rounded-full px-6 py-2 text-[#444746] font-medium text-[14px] hover:bg-[#f1f3f4] transition flex items-center gap-2 cursor-pointer shadow-sm">
+                                    <i class="fa-solid fa-arrow-right"></i> Forward
+                                </button>
                             </div>
                         </div>
                     </div>
 
-                    <!-- EMAIL 4: CARLOS (ENVÍA DATOS Y FOTOS) -->
-                    <div class="email-item mb-6 relative group" id="email4">
-                        <div class="flex items-start gap-3 md:gap-4">
-                            <div class="w-10 h-10 bg-blue-600 rounded-full text-white flex items-center justify-center font-bold text-lg shrink-0">C</div>
-                            <div class="flex-1 min-w-0">
-                                <div class="flex flex-col md:flex-row md:justify-between md:items-baseline">
-                                    <span class="font-bold text-[#1f1f1f] text-sm">Carlos <span class="text-gray-500 font-normal hidden md:inline">&lt;carlos.gomez@gmail.com&gt;</span></span>
-                                    <span class="text-xs text-gray-500 mt-1 md:mt-0">12:45 PM (hace 1 hora)</span>
+                    <!-- COMPOSE 2: CARLOS ESCRIBIENDO CON FOTOS -->
+                    <div class="email-item pt-4" id="compose2">
+                        <div class="flex items-start gap-3 mb-2">
+                            <div class="w-10 h-10 bg-blue-600 rounded-full text-white flex items-center justify-center font-bold text-lg shrink-0 z-10 shadow-sm">C</div>
+                            <div class="flex-1 border border-gray-200 rounded-xl shadow-lg bg-white overflow-hidden flex flex-col relative mt-1">
+                                <div class="px-4 py-2 border-b border-gray-100 flex items-center text-[13px] text-gray-500 bg-gray-50">
+                                    <i class="fa-solid fa-reply mr-2 text-gray-400"></i>
+                                    <span class="mr-2">Para:</span>
+                                    <span class="bg-white px-2 py-0.5 rounded-md border border-gray-200 text-gray-700 flex items-center gap-1 shadow-sm">Agente Domingo Alonso <i class="fa-solid fa-xmark text-[10px] ml-1"></i></span>
                                 </div>
-                                <div class="text-xs text-gray-500 hidden md:block">para Domingo Alonso</div>
-                                <div class="mt-3 text-sm text-[#202124] leading-relaxed">
-                                    <p>¡Qué maravilla! Me encanta el Golf y me parece comodísimo hacerlo todo por aquí sin tener que rellenar formularios.</p>
+                                <div class="p-5 text-[14px] text-[#202124] min-h-[120px] outline-none bg-white leading-relaxed" contenteditable="false">
+                                    <p>¡Qué maravilla! Me gustan mucho las opciones. Creo que me decanto por el Golf porque mis hijos ya son mayores y no necesito tanto maletero. Además, me parece comodísimo hacerlo todo por aquí sin tener que rellenar formularios.</p>
                                     <p class="mt-2">Te paso los datos que me pides:</p>
                                     <ul class="list-none space-y-1 mt-2 mb-3 ml-1 text-gray-700">
                                         <li>- <strong>Matrícula:</strong> 4321-HGF</li>
@@ -338,82 +559,172 @@
                                         <li>- <strong>Isla:</strong> Estoy en Gran Canaria.</li>
                                     </ul>
                                     <p>Te adjunto un par de fotos que le acabo de sacar bajando al garaje.</p>
+                                    
+                                    <!-- Adjuntos en el borrador -->
+                                    <div class="flex gap-3 mt-4 flex-wrap">
+                                        <div class="border border-gray-200 rounded-lg flex flex-col w-40 sm:w-48 bg-white cursor-pointer shadow-sm relative hover:shadow transition overflow-hidden group">
+                                            <div class="h-24 w-full bg-gray-100 overflow-hidden">
+                                                <img src="https://jcompan.github.io/domingoalonso/frontal.jpg" alt="Frontal Passat" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                                            </div>
+                                            <div class="p-2 bg-gray-50 flex items-center gap-2 border-t border-gray-100">
+                                                <i class="fa-solid fa-image text-[#ea4335] text-xs"></i>
+                                                <div class="overflow-hidden flex-1">
+                                                    <div class="text-[11px] font-medium text-[#202124] truncate">frontal-passat.jpg</div>
+                                                    <div class="text-[10px] text-gray-500">2.4 MB</div>
+                                                </div>
+                                            </div>
+                                            <div class="absolute -top-2 -right-2 bg-gray-200 hover:bg-gray-300 rounded-full w-5 h-5 flex items-center justify-center text-[10px] text-gray-600 border border-white shadow-sm"><i class="fa-solid fa-xmark"></i></div>
+                                        </div>
+                                        <div class="border border-gray-200 rounded-lg flex flex-col w-40 sm:w-48 bg-white cursor-pointer shadow-sm relative hover:shadow transition overflow-hidden group">
+                                            <div class="h-24 w-full bg-gray-100 overflow-hidden">
+                                                <img src="https://jcompan.github.io/domingoalonso/salpicadero.jpg" alt="Salpicadero KM" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                                            </div>
+                                            <div class="p-2 bg-gray-50 flex items-center gap-2 border-t border-gray-100">
+                                                <i class="fa-solid fa-image text-[#ea4335] text-xs"></i>
+                                                <div class="overflow-hidden flex-1">
+                                                    <div class="text-[11px] font-medium text-[#202124] truncate">salpicadero-km.jpg</div>
+                                                    <div class="text-[10px] text-gray-500">1.8 MB</div>
+                                                </div>
+                                            </div>
+                                            <div class="absolute -top-2 -right-2 bg-gray-200 hover:bg-gray-300 rounded-full w-5 h-5 flex items-center justify-center text-[10px] text-gray-600 border border-white shadow-sm"><i class="fa-solid fa-xmark"></i></div>
+                                        </div>
+                                    </div>
                                 </div>
-                                
-                                <!-- ATTACHMENTS (SIMULA LA SUBIDA DE FOTOS DEL PASO 3 WEB) -->
-                                <div class="flex gap-3 mt-4 overflow-x-auto pb-2">
-                                    <div class="border border-gray-200 rounded-lg flex items-center gap-3 p-2.5 w-52 shrink-0 hover:bg-gray-50 cursor-pointer shadow-sm">
-                                        <div class="w-10 h-10 bg-red-50 rounded flex items-center justify-center text-red-500"><i class="fa-regular fa-image text-lg"></i></div>
-                                        <div class="overflow-hidden">
-                                            <div class="text-xs font-bold text-gray-800 truncate">frontal-passat.jpg</div>
+                                <div class="px-4 py-3 bg-gray-50 flex items-center justify-between border-t border-gray-100">
+                                    <div class="flex gap-1 items-center">
+                                        <button id="sendBtn2" class="bg-[#0b57d0] hover:bg-[#0842a0] text-white px-6 py-2 rounded-full font-medium text-sm transition shadow-sm mr-2 cursor-pointer">Send</button>
+                                        <i class="fa-solid fa-font text-gray-500 hover:bg-gray-200 p-2.5 rounded cursor-pointer hidden sm:block"></i>
+                                        <i class="fa-solid fa-paperclip text-gray-500 hover:bg-gray-200 p-2.5 rounded cursor-pointer"></i>
+                                        <i class="fa-regular fa-face-smile text-gray-500 hover:bg-gray-200 p-2.5 rounded cursor-pointer hidden sm:block"></i>
+                                        <i class="fa-regular fa-image text-gray-500 hover:bg-gray-200 p-2.5 rounded cursor-pointer"></i>
+                                    </div>
+                                    <i class="fa-regular fa-trash-can text-gray-500 hover:bg-gray-200 p-2.5 rounded cursor-pointer"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- EMAIL 4: CARLOS (ENVÍA DATOS Y FOTOS) -->
+                    <div class="email-item pt-4" id="email4">
+                        <div class="flex items-start gap-3 mb-2">
+                            <div class="w-10 h-10 bg-blue-600 rounded-full text-white flex items-center justify-center font-bold text-lg shrink-0">C</div>
+                            <div class="flex-1 min-w-0">
+                                <div class="flex justify-between items-start">
+                                    <div class="flex flex-col">
+                                        <span class="font-bold text-[14px] text-[#202124]">Carlos Gomez <span class="text-xs font-normal text-gray-500">&lt;carlos.gomez@gmail.com&gt;</span></span>
+                                        <span class="text-xs text-gray-500 flex items-center gap-1">to Domingo Alonso <i class="fa-solid fa-caret-down text-[10px]"></i></span>
+                                    </div>
+                                    <div class="flex items-center gap-3 text-gray-500">
+                                        <span class="text-xs">12:45 PM (hace 10 minutos)</span>
+                                        <i class="fa-regular fa-star cursor-pointer hover:text-gray-700"></i>
+                                        <i class="fa-solid fa-reply cursor-pointer hover:text-gray-700"></i>
+                                        <i class="fa-solid fa-ellipsis-vertical cursor-pointer hover:text-gray-700"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="pl-0 md:pl-12 mt-2 pb-6 border-b border-gray-100">
+                            <div class="text-[14px] text-[#202124] leading-relaxed max-w-3xl">
+                                <p>¡Qué maravilla! Me gustan mucho las opciones. Creo que me decanto por el Golf porque mis hijos ya son mayores y no necesito tanto maletero. Además, me parece comodísimo hacerlo todo por aquí sin tener que rellenar formularios.</p>
+                                <p class="mt-2">Te paso los datos que me pides:</p>
+                                <ul class="list-none space-y-1 mt-2 mb-3 ml-1 text-gray-700">
+                                    <li>- <strong>Matrícula:</strong> 4321-HGF</li>
+                                    <li>- <strong>Motor:</strong> Sí, es el 2.0 TDI 140cv.</li>
+                                    <li>- <strong>Teléfono:</strong> 612 34 56 78</li>
+                                    <li>- <strong>Isla:</strong> Estoy en Gran Canaria.</li>
+                                </ul>
+                                <p>Te adjunto un par de fotos que le acabo de sacar bajando al garaje.</p>
+                            </div>
+                            
+                            <!-- ATTACHMENTS -->
+                            <div class="flex gap-3 mt-4 flex-wrap">
+                                <div class="border border-gray-200 rounded-lg flex flex-col w-40 sm:w-48 bg-white cursor-pointer shadow-sm relative hover:shadow transition overflow-hidden group">
+                                    <div class="h-24 w-full bg-gray-100 overflow-hidden">
+                                        <img src="https://jcompan.github.io/domingoalonso/frontal.jpg" alt="Frontal Passat" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                                    </div>
+                                    <div class="p-2 bg-gray-50 flex items-center gap-2 border-t border-gray-100">
+                                        <i class="fa-solid fa-image text-[#ea4335] text-xs"></i>
+                                        <div class="overflow-hidden flex-1">
+                                            <div class="text-[11px] font-medium text-[#202124] truncate">frontal-passat.jpg</div>
                                             <div class="text-[10px] text-gray-500">2.4 MB</div>
                                         </div>
                                     </div>
-                                    <div class="border border-gray-200 rounded-lg flex items-center gap-3 p-2.5 w-52 shrink-0 hover:bg-gray-50 cursor-pointer shadow-sm">
-                                        <div class="w-10 h-10 bg-red-50 rounded flex items-center justify-center text-red-500"><i class="fa-regular fa-image text-lg"></i></div>
-                                        <div class="overflow-hidden">
-                                            <div class="text-xs font-bold text-gray-800 truncate">salpicadero-km.jpg</div>
+                                </div>
+                                <div class="border border-gray-200 rounded-lg flex flex-col w-40 sm:w-48 bg-white cursor-pointer shadow-sm relative hover:shadow transition overflow-hidden group">
+                                    <div class="h-24 w-full bg-gray-100 overflow-hidden">
+                                        <img src="https://jcompan.github.io/domingoalonso/salpicadero.jpg" alt="Salpicadero KM" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                                    </div>
+                                    <div class="p-2 bg-gray-50 flex items-center gap-2 border-t border-gray-100">
+                                        <i class="fa-solid fa-image text-[#ea4335] text-xs"></i>
+                                        <div class="overflow-hidden flex-1">
+                                            <div class="text-[11px] font-medium text-[#202124] truncate">salpicadero-km.jpg</div>
                                             <div class="text-[10px] text-gray-500">1.8 MB</div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="border-b border-gray-200 mt-6"></div>
                     </div>
 
                     <!-- EMAIL 5: AGENTFORCE (TASACIÓN FINAL Y CITA) -->
-                    <div class="email-item mb-10" id="email5">
-                        <div class="flex items-start gap-3 md:gap-4">
-                            <div class="w-10 h-10 border border-gray-200 rounded-full p-0.5 bg-white shrink-0 shadow-sm flex items-center justify-center">
-                                <img src="https://jcompan.github.io/domingoalonso/domingo_alonso_logo.jpg" alt="Domingo Alonso" class="w-full h-full object-cover rounded-full">
+                    <div class="email-item pt-4" id="email5">
+                        <div class="flex items-start gap-3 mb-2">
+                            <div class="w-10 h-10 border border-gray-200 rounded-full bg-white shrink-0 overflow-hidden">
+                                <img src="https://jcompan.github.io/domingoalonso/domingo_alonso_logo.jpg" alt="Domingo Alonso" class="w-full h-full object-cover">
                             </div>
-                            <div class="flex-1">
-                                <div class="flex flex-col md:flex-row md:justify-between md:items-baseline">
-                                    <span class="font-bold text-[#1f1f1f] text-sm">Agente Domingo Alonso</span>
-                                    <div class="flex items-center gap-4 mt-1 md:mt-0">
-                                        <span class="text-xs text-gray-500">12:50 PM (ahora mismo)</span>
-                                        <div class="flex gap-2 text-gray-500 hidden md:flex">
-                                            <i class="fa-solid fa-reply hover:text-gray-800 cursor-pointer"></i>
-                                        </div>
+                            <div class="flex-1 min-w-0">
+                                <div class="flex justify-between items-start">
+                                    <div class="flex flex-col">
+                                        <span class="font-bold text-[14px] text-[#202124]">Agente Domingo Alonso <span class="text-xs font-normal text-gray-500">&lt;agente@domingoalonsoocasion.com&gt;</span></span>
+                                        <span class="text-xs text-gray-500 flex items-center gap-1">to me <i class="fa-solid fa-caret-down text-[10px]"></i></span>
+                                    </div>
+                                    <div class="flex items-center gap-3 text-gray-500">
+                                        <span class="text-xs">12:50 PM (ahora mismo)</span>
+                                        <i class="fa-regular fa-star cursor-pointer hover:text-gray-700"></i>
+                                        <i class="fa-solid fa-reply cursor-pointer hover:text-gray-700"></i>
+                                        <i class="fa-solid fa-ellipsis-vertical cursor-pointer hover:text-gray-700"></i>
                                     </div>
                                 </div>
-                                <div class="text-xs text-gray-500 hidden md:block">para mí</div>
+                            </div>
+                        </div>
+                        
+                        <div class="pl-0 md:pl-12 mt-2 pb-6 border-b border-gray-100">
+                            <div class="text-[14px] text-[#202124] leading-relaxed max-w-3xl">
+                                <p>¡Datos e imágenes recibidos y procesados correctamente, Carlos! 📸✅ He verificado el estado exterior y confirmado los kilómetros reales.</p>
                                 
-                                <div class="mt-4 text-sm text-[#202124] leading-relaxed">
-                                    <p>¡Datos e imágenes recibidos y procesados correctamente, Carlos! 📸✅ He verificado el estado exterior y confirmado los kilómetros reales.</p>
-                                    
-                                    <!-- OFERTA DESTACADA -->
-                                    <div class="bg-blue-50 border border-blue-100 rounded-xl p-5 my-5 text-center relative overflow-hidden">
-                                        <div class="absolute top-0 right-0 bg-[#002b49] text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg uppercase tracking-wider">Oferta Generada</div>
-                                        <p class="text-gray-600 mb-1 text-xs uppercase font-semibold tracking-wide">Valoración para VW Passat Variant (4321-HGF)</p>
-                                        <div class="text-4xl font-black text-[#002b49] my-1">2.850 €</div>
-                                        <p class="text-xs text-[#059669] font-medium"><i class="fa-solid fa-shield-check"></i> Oferta garantizada por 7 días</p>
-                                    </div>
+                                <!-- OFERTA DESTACADA -->
+                                <div class="bg-blue-50 border border-blue-100 rounded-xl p-6 my-6 text-center relative overflow-hidden">
+                                    <div class="absolute top-0 right-0 bg-[#002b49] text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg uppercase tracking-wider">Oferta Generada</div>
+                                    <p class="text-gray-600 mb-1 text-xs uppercase font-semibold tracking-wide">Valoración para VW Passat Variant (4321-HGF)</p>
+                                    <div class="text-4xl font-black text-[#002b49] my-2">2.850 €</div>
+                                    <p class="text-xs text-[#059669] font-medium"><i class="fa-solid fa-shield-check"></i> Oferta garantizada por 7 días</p>
+                                </div>
 
-                                    <p>Si utilizamos estos 2.850 € como entrada para el <strong>VW Golf 1.5 eTSI ECO</strong> que te recomendé, se te quedaría una cuota de financiación espectacular de unos <strong>185€/mes</strong>.</p>
+                                <p>Si utilizamos estos 2.850 € como entrada para el <strong>VW Golf 1.5 eTSI ECO</strong> que te ha gustado, se te quedaría una cuota de financiación espectacular de unos <strong>185€/mes</strong>.</p>
 
-                                    <p class="mt-4">Ya que nos has indicado que estás en <strong>Gran Canaria</strong>, he avisado a mis compañeros de nuestro centro de Miller Bajo. ¿Te parece bien si te llama <strong>David</strong> esta tarde al 612 34 56 78 para confirmar una cita, ver el Golf en persona y cerrar el trámite?</p>
-                                    
-                                    <div class="mt-6 mb-2 flex flex-wrap gap-3">
-                                        <a href="#" class="bg-[#059669] text-white px-5 py-2.5 rounded text-sm font-bold no-underline inline-flex items-center gap-2 hover:bg-[#047857] transition shadow-md">
-                                            <i class="fa-solid fa-phone"></i> Sí, que me llame David
-                                        </a>
-                                        <a href="#" class="bg-white border border-gray-300 text-gray-700 px-5 py-2.5 rounded text-sm font-bold no-underline inline-flex items-center gap-2 hover:bg-gray-50 transition">
-                                            Tengo alguna duda más
-                                        </a>
-                                    </div>
+                                <p class="mt-4">Ya que nos has indicado que estás en <strong>Gran Canaria</strong>, he avisado a mis compañeros de nuestro centro de Miller Bajo. ¿Te parece bien si te llama <strong>David</strong> esta tarde al 612 34 56 78 para confirmar una cita, ver el Golf en persona y cerrar el trámite?</p>
+                                
+                                <div class="mt-6 flex flex-wrap gap-3">
+                                    <a href="#" class="bg-[#059669] text-white px-5 py-2.5 rounded text-[13px] font-bold no-underline inline-flex items-center gap-2 hover:bg-[#047857] transition shadow-md">
+                                        <i class="fa-solid fa-phone"></i> Sí, que me llame David
+                                    </a>
+                                    <a href="#" class="bg-white border border-gray-300 text-[#444746] px-5 py-2.5 rounded text-[13px] font-bold no-underline inline-flex items-center gap-2 hover:bg-gray-50 transition">
+                                        Tengo alguna duda más
+                                    </a>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- REPLY BOX -->
-                    <div class="flex gap-3 md:gap-4 opacity-50 email-item" id="replyBox">
-                        <div class="w-10 h-10 bg-blue-600 rounded-full text-white flex items-center justify-center font-bold shrink-0">C</div>
-                        <div class="flex-1 border border-gray-200 rounded-lg shadow-sm bg-white p-4 text-gray-400 text-sm">
-                            Responder al Agente Domingo Alonso...
-                        </div>
+                    <!-- BOTONES INFERIORES TIPO GMAIL -->
+                    <div class="flex gap-3 pl-0 md:pl-12 mt-6 pb-12 opacity-0 transition-opacity duration-500" id="replyBox">
+                        <button class="border border-gray-300 rounded-full px-6 py-2 text-[#444746] font-medium text-[14px] hover:bg-[#f1f3f4] transition flex items-center gap-2">
+                            <i class="fa-solid fa-reply"></i> Reply
+                        </button>
+                        <button class="border border-gray-300 rounded-full px-6 py-2 text-[#444746] font-medium text-[14px] hover:bg-[#f1f3f4] transition flex items-center gap-2">
+                            <i class="fa-solid fa-arrow-right"></i> Forward
+                        </button>
                     </div>
 
                 </div>
@@ -443,67 +754,126 @@
 
             // Iniciar Demo
             startBtn.addEventListener('click', () => {
-                const isManual = document.querySelector('input[name="mode"]:checked').value === 'manual';
+                const aiMode = document.querySelector('input[name="mode"]:checked').value;
                 const delayMs = parseFloat(timeDelayInput.value) * 1000;
                 
-                // Ocultar modal
                 configModal.classList.add('opacity-0');
                 setTimeout(() => {
                     configModal.style.display = 'none';
-                    iniciarFlujo(isManual, delayMs);
+                    iniciarFlujo(aiMode, delayMs);
                 }, 300);
             });
 
-            // Función principal que gestiona la secuencia de correos
-            function iniciarFlujo(isManual, delayMs) {
-                const steps = [
-                    document.getElementById('email1'),
-                    document.getElementById('email2'),
-                    document.getElementById('email3'),
-                    document.getElementById('email4'),
-                    document.getElementById('email5'),
-                    document.getElementById('replyBox')
+            function iniciarFlujo(aiMode, delayMs) {
+                // Máquina de estados: Las acciones de Carlos siempre requieren click en los botones.
+                // Las respuestas de la IA ('ai_response') se controlan por el configurador.
+                const sequence = [
+                    { action: 'show', id: 'email1', type: 'auto', delay: 500 },
+                    { action: 'show', id: 'compose1', type: 'click', triggerBtn: 'replyBtn1', altTriggerBtn: 'replyIcon1', hideId: 'replyArea1' }, 
+                    { action: 'replace', hideId: 'compose1', showId: 'email2', type: 'click', triggerBtn: 'sendBtn1' },
+                    { action: 'show', id: 'email3', type: 'ai_response' },
+                    { action: 'show', id: 'compose2', type: 'click', triggerBtn: 'replyBtn2', altTriggerBtn: 'replyIcon2', hideId: 'replyArea2' },
+                    { action: 'replace', hideId: 'compose2', showId: 'email4', type: 'click', triggerBtn: 'sendBtn2' },
+                    { action: 'show', id: 'email5', type: 'ai_response' },
+                    { action: 'show', id: 'replyBox', type: 'ai_response' }
                 ];
+                
                 const container = document.getElementById('scrollContainer');
                 let currentStep = 0;
-                let demoActive = true; // Flag para evitar que la tecla interfiera en modo automático
+
+                function animateIn(el) {
+                    if (el.id === 'replyBox') {
+                        el.classList.add('opacity-100');
+                        el.classList.remove('opacity-0');
+                    } else {
+                        el.classList.add('active'); // Aplica display: block
+                        void el.offsetWidth; // Fuerza el redibujado
+                        el.classList.add('visible'); // Dispara animación
+                    }
+                }
+
+                function scrollAfter(targetEl) {
+                    setTimeout(() => {
+                        const topPos = targetEl.offsetTop - 70;
+                        container.scrollTo({ top: topPos, behavior: 'smooth' });
+                    }, 50);
+                }
 
                 function showNext() {
-                    if (currentStep < steps.length) {
-                        const nextElement = steps[currentStep];
-                        if (nextElement) {
-                            nextElement.classList.add('visible');
-                            
-                            // Ajustar el scroll dependiendo del correo que se muestra
-                            if (currentStep === 1) { 
-                                container.scrollTop = nextElement.offsetTop - 100;
-                            } else {
-                                container.scrollTo({ top: container.scrollHeight, behavior: 'smooth' });
-                            }
-                        }
-                        currentStep++;
+                    if (currentStep >= sequence.length) return;
+                    
+                    const step = sequence[currentStep];
+                    let targetEl = null;
+
+                    if (step.action === 'show') {
+                        targetEl = document.getElementById(step.id);
+                        if (targetEl) animateIn(targetEl);
                         
-                        // Si es automático, programar el siguiente
-                        if (!isManual && currentStep < steps.length) {
+                        // Ocultar botones si es necesario
+                        if (step.hideId) {
+                            const hEl = document.getElementById(step.hideId);
+                            if (hEl) hEl.style.display = 'none';
+                        }
+                    } else if (step.action === 'replace') {
+                        const hideEl = document.getElementById(step.hideId);
+                        targetEl = document.getElementById(step.showId);
+                        
+                        if (hideEl) {
+                            hideEl.classList.remove('visible', 'active');
+                            hideEl.style.display = 'none'; 
+                        }
+                        if (targetEl) animateIn(targetEl);
+                    }
+                    
+                    if (targetEl) scrollAfter(targetEl);
+                    
+                    currentStep++;
+                    setupTriggerForCurrentStep();
+                }
+
+                const keydownHandler = (e) => {
+                    // Ignorar teclas modificadoras para evitar avanzar sin querer
+                    if (e.key !== "Alt" && e.key !== "Control" && e.key !== "Shift" && e.key !== "Meta") {
+                        document.removeEventListener('keydown', keydownHandler);
+                        showNext();
+                    }
+                };
+
+                function setupTriggerForCurrentStep() {
+                    if (currentStep >= sequence.length) return;
+
+                    const nextStep = sequence[currentStep];
+
+                    if (nextStep.type === 'auto') {
+                        setTimeout(showNext, nextStep.delay || 0);
+                    } 
+                    else if (nextStep.type === 'click') {
+                        // Esperar a que el usuario haga click en el botón correspondiente (Reply o Send)
+                        const btn = document.getElementById(nextStep.triggerBtn);
+                        const altBtn = nextStep.altTriggerBtn ? document.getElementById(nextStep.altTriggerBtn) : null;
+                        
+                        const onClick = function() {
+                            if(btn) btn.removeEventListener('click', onClick);
+                            if(altBtn) altBtn.removeEventListener('click', onClick);
+                            showNext();
+                        };
+
+                        if (btn) btn.addEventListener('click', onClick);
+                        if (altBtn) altBtn.addEventListener('click', onClick);
+                    }
+                    else if (nextStep.type === 'ai_response') {
+                        // Determinar cómo llega la respuesta de la IA según la config elegida
+                        if (aiMode === 'auto') {
                             setTimeout(showNext, delayMs);
+                        } else {
+                            // En modo manual, esperamos que se pulse una tecla para que entre el correo del Agente
+                            document.addEventListener('keydown', keydownHandler);
                         }
                     }
                 }
 
-                // El primer correo siempre se muestra automáticamente tras arrancar
-                setTimeout(() => {
-                    showNext();
-                }, 500);
-
-                // Configurar el evento de teclado solo si estamos en modo manual
-                if (isManual) {
-                    document.addEventListener('keydown', (e) => {
-                        // Ignoramos teclas de modificación como Alt, Ctrl, Shift para no avanzar por error
-                        if (e.key !== "Alt" && e.key !== "Control" && e.key !== "Shift" && e.key !== "Meta") {
-                            showNext();
-                        }
-                    });
-                }
+                // Arrancar la máquina
+                setupTriggerForCurrentStep();
             }
         });
     </script>
