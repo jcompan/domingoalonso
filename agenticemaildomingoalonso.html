@@ -371,6 +371,9 @@
                                 <button class="border border-gray-300 rounded-full px-6 py-2 text-[#444746] font-medium text-[14px] hover:bg-[#f1f3f4] transition flex items-center gap-2 cursor-pointer shadow-sm">
                                     <i class="fa-solid fa-arrow-right"></i> Forward
                                 </button>
+                                <button class="border border-gray-300 rounded-full w-[38px] h-[38px] flex items-center justify-center text-[#444746] hover:bg-[#f1f3f4] transition cursor-pointer shadow-sm">
+                                    <i class="fa-regular fa-face-smile text-[16px]"></i>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -385,12 +388,15 @@
                                     <span class="mr-2">Para:</span>
                                     <span class="bg-white px-2 py-0.5 rounded-md border border-gray-200 text-gray-700 flex items-center gap-1 shadow-sm">Domingo Alonso Ocasión <i class="fa-solid fa-xmark text-[10px] ml-1"></i></span>
                                 </div>
-                                <div class="p-5 text-[14px] text-[#202124] min-h-[120px] outline-none bg-white leading-relaxed" contenteditable="false">
-                                    <p>Hola,</p>
-                                    <p class="mt-2">He visto vuestro correo y la verdad es que me pica la curiosidad. Nunca he vendido un coche y no sé muy bien cómo va esto.</p>
-                                    <p class="mt-2">Tengo un <strong>Volkswagen Passat Variant de hace 15 años</strong>. Ha sido una maravilla, pero ya tiene <strong>250.000 kms</strong> y con las nuevas normativas de emisiones me están prohibiendo entrar en el centro de mi ciudad.</p>
-                                    <p class="mt-2">¿Compráis coches tan antiguos y con tantos kilómetros? Más que el dinero en sí, me interesaría saber si hay posibilidad de entregar este coche viejo como entrada para compraros uno más moderno de ocasión que tenga la <strong>etiqueta ECO</strong>. ¿Cómo sería el proceso?</p>
-                                    <p class="mt-3">Gracias y un saludo,<br>Carlos</p>
+                                <div class="p-5 text-[14px] text-[#202124] min-h-[120px] outline-none bg-white leading-relaxed cursor-text" contenteditable="false">
+                                    <!-- Contenedor que aparecerá al pulsar la tecla -->
+                                    <div id="composeBody1" class="hidden">
+                                        <p>Hola,</p>
+                                        <p class="mt-2">He visto vuestro correo y la verdad es que me pica la curiosidad. Nunca he vendido un coche y no sé muy bien cómo va esto.</p>
+                                        <p class="mt-2">Tengo un <strong>Volkswagen Passat Variant de hace 15 años</strong>. Ha sido una maravilla, pero ya tiene <strong>250.000 kms</strong> y con las nuevas normativas de emisiones me están prohibiendo entrar en el centro de mi ciudad.</p>
+                                        <p class="mt-2">¿Compráis coches tan antiguos y con tantos kilómetros? Más que el dinero en sí, me interesaría saber si hay posibilidad de entregar este coche viejo como entrada para compraros uno más moderno de ocasión que tenga la <strong>etiqueta ECO</strong>. ¿Cómo sería el proceso?</p>
+                                        <p class="mt-3">Gracias y un saludo,<br>Carlos</p>
+                                    </div>
                                 </div>
                                 <div class="px-4 py-3 bg-gray-50 flex items-center justify-between border-t border-gray-100">
                                     <div class="flex gap-1 items-center">
@@ -406,7 +412,7 @@
                         </div>
                     </div>
 
-                    <!-- EMAIL 2: CARLOS (RESPUESTA CLIENTE) -->
+                    <!-- EMAIL 2: CARLOS (RESPUESTA CLIENTE ENVIADA) -->
                     <div class="email-item pt-4" id="email2">
                         <div class="flex items-start gap-3 mb-2">
                             <div class="w-10 h-10 bg-blue-600 rounded-full text-white flex items-center justify-center font-bold text-lg shrink-0">C</div>
@@ -433,6 +439,19 @@
                                 <p class="mt-2">Tengo un <strong>Volkswagen Passat Variant de hace 15 años</strong>. Ha sido una maravilla, pero ya tiene <strong>250.000 kms</strong> y con las nuevas normativas de emisiones me están prohibiendo entrar en el centro de mi ciudad.</p>
                                 <p class="mt-2">¿Compráis coches tan antiguos y con tantos kilómetros? Más que el dinero en sí, me interesaría saber si hay posibilidad de entregar este coche viejo como entrada para compraros uno más moderno de ocasión que tenga la <strong>etiqueta ECO</strong>. ¿Cómo sería el proceso?</p>
                                 <p class="mt-3">Gracias y un saludo,<br>Carlos</p>
+                            </div>
+                            
+                            <!-- BOTÓN REPLY DE EMAIL 2 -->
+                            <div class="mt-4 flex gap-3">
+                                <button class="border border-gray-300 rounded-full px-6 py-2 text-[#444746] font-medium text-[14px] hover:bg-[#f1f3f4] transition flex items-center gap-2 cursor-pointer shadow-sm">
+                                    <i class="fa-solid fa-reply"></i> Reply
+                                </button>
+                                <button class="border border-gray-300 rounded-full px-6 py-2 text-[#444746] font-medium text-[14px] hover:bg-[#f1f3f4] transition flex items-center gap-2 cursor-pointer shadow-sm">
+                                    <i class="fa-solid fa-arrow-right"></i> Forward
+                                </button>
+                                <button class="border border-gray-300 rounded-full w-[38px] h-[38px] flex items-center justify-center text-[#444746] hover:bg-[#f1f3f4] transition cursor-pointer shadow-sm">
+                                    <i class="fa-regular fa-face-smile text-[16px]"></i>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -494,7 +513,7 @@
                                     <!-- Card 2: Octavia Combi -->
                                     <div class="min-w-[240px] w-[240px] bg-white border border-gray-200 rounded-lg p-3 shadow-sm relative shrink-0 snap-start flex flex-col">
                                         <div class="absolute top-0 right-0 bg-blue-100 text-blue-800 text-[10px] font-bold px-2 py-1 rounded-bl-lg z-10">FAMILIAR</div>
-                                        <img src="https://images.unsplash.com/photo-1629897048514-3dd74142eff4?auto=format&fit=crop&q=80&w=300" alt="Skoda Octavia" class="w-full h-32 object-cover rounded-md border border-gray-200 mb-3">
+                                        <img src="https://images.unsplash.com/photo-1617469767053-d3b523a0b982?auto=format&fit=crop&q=80&w=300" alt="Skoda Octavia" class="w-full h-32 object-cover rounded-md border border-gray-200 mb-3">
                                         <div class="flex-1">
                                             <h4 class="font-bold text-[#002b49] text-[14px]">Skoda Octavia Combi <span class="bg-green-100 text-green-800 px-1.5 py-0.5 rounded text-[9px] align-top ml-1">ECO</span></h4>
                                             <p class="text-[11px] text-gray-500 mt-1">2022 • 28.000 km • 1.5 mHEV</p>
@@ -535,6 +554,9 @@
                                 <button class="border border-gray-300 rounded-full px-6 py-2 text-[#444746] font-medium text-[14px] hover:bg-[#f1f3f4] transition flex items-center gap-2 cursor-pointer shadow-sm">
                                     <i class="fa-solid fa-arrow-right"></i> Forward
                                 </button>
+                                <button class="border border-gray-300 rounded-full w-[38px] h-[38px] flex items-center justify-center text-[#444746] hover:bg-[#f1f3f4] transition cursor-pointer shadow-sm">
+                                    <i class="fa-regular fa-face-smile text-[16px]"></i>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -549,44 +571,47 @@
                                     <span class="mr-2">Para:</span>
                                     <span class="bg-white px-2 py-0.5 rounded-md border border-gray-200 text-gray-700 flex items-center gap-1 shadow-sm">Agente Domingo Alonso <i class="fa-solid fa-xmark text-[10px] ml-1"></i></span>
                                 </div>
-                                <div class="p-5 text-[14px] text-[#202124] min-h-[120px] outline-none bg-white leading-relaxed" contenteditable="false">
-                                    <p>¡Qué maravilla! Me gustan mucho las opciones. Creo que me decanto por el Golf porque mis hijos ya son mayores y no necesito tanto maletero. Además, me parece comodísimo hacerlo todo por aquí sin tener que rellenar formularios.</p>
-                                    <p class="mt-2">Te paso los datos que me pides:</p>
-                                    <ul class="list-none space-y-1 mt-2 mb-3 ml-1 text-gray-700">
-                                        <li>- <strong>Matrícula:</strong> 4321-HGF</li>
-                                        <li>- <strong>Motor:</strong> Sí, es el 2.0 TDI 140cv.</li>
-                                        <li>- <strong>Teléfono:</strong> 612 34 56 78</li>
-                                        <li>- <strong>Isla:</strong> Estoy en Gran Canaria.</li>
-                                    </ul>
-                                    <p>Te adjunto un par de fotos que le acabo de sacar bajando al garaje.</p>
-                                    
-                                    <!-- Adjuntos en el borrador -->
-                                    <div class="flex gap-3 mt-4 flex-wrap">
-                                        <div class="border border-gray-200 rounded-lg flex flex-col w-40 sm:w-48 bg-white cursor-pointer shadow-sm relative hover:shadow transition overflow-hidden group">
-                                            <div class="h-24 w-full bg-gray-100 overflow-hidden">
-                                                <img src="https://jcompan.github.io/domingoalonso/frontal.jpg" alt="Frontal Passat" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
-                                            </div>
-                                            <div class="p-2 bg-gray-50 flex items-center gap-2 border-t border-gray-100">
-                                                <i class="fa-solid fa-image text-[#ea4335] text-xs"></i>
-                                                <div class="overflow-hidden flex-1">
-                                                    <div class="text-[11px] font-medium text-[#202124] truncate">frontal-passat.jpg</div>
-                                                    <div class="text-[10px] text-gray-500">2.4 MB</div>
+                                <div class="p-5 text-[14px] text-[#202124] min-h-[120px] outline-none bg-white leading-relaxed cursor-text" contenteditable="false">
+                                    <!-- Contenedor que aparecerá al pulsar la tecla -->
+                                    <div id="composeBody2" class="hidden">
+                                        <p>¡Qué maravilla! Me gustan mucho las opciones. Creo que me decanto por el Golf porque mis hijos ya son mayores y no necesito tanto maletero. Además, me parece comodísimo hacerlo todo por aquí sin tener que rellenar formularios.</p>
+                                        <p class="mt-2">Te paso los datos que me pides:</p>
+                                        <ul class="list-none space-y-1 mt-2 mb-3 ml-1 text-gray-700">
+                                            <li>- <strong>Matrícula:</strong> 4321-HGF</li>
+                                            <li>- <strong>Motor:</strong> Sí, es el 2.0 TDI 140cv.</li>
+                                            <li>- <strong>Teléfono:</strong> 612 34 56 78</li>
+                                            <li>- <strong>Isla:</strong> Estoy en Gran Canaria.</li>
+                                        </ul>
+                                        <p>Te adjunto un par de fotos que le acabo de sacar bajando al garaje.</p>
+                                        
+                                        <!-- Adjuntos en el borrador -->
+                                        <div class="flex gap-3 mt-4 flex-wrap">
+                                            <div class="border border-gray-200 rounded-lg flex flex-col w-40 sm:w-48 bg-white cursor-pointer shadow-sm relative hover:shadow transition overflow-hidden group">
+                                                <div class="h-24 w-full bg-gray-100 overflow-hidden">
+                                                    <img src="https://jcompan.github.io/domingoalonso/frontal.jpg" alt="Frontal Passat" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
                                                 </div>
-                                            </div>
-                                            <div class="absolute -top-2 -right-2 bg-gray-200 hover:bg-gray-300 rounded-full w-5 h-5 flex items-center justify-center text-[10px] text-gray-600 border border-white shadow-sm"><i class="fa-solid fa-xmark"></i></div>
-                                        </div>
-                                        <div class="border border-gray-200 rounded-lg flex flex-col w-40 sm:w-48 bg-white cursor-pointer shadow-sm relative hover:shadow transition overflow-hidden group">
-                                            <div class="h-24 w-full bg-gray-100 overflow-hidden">
-                                                <img src="https://jcompan.github.io/domingoalonso/salpicadero.jpg" alt="Salpicadero KM" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
-                                            </div>
-                                            <div class="p-2 bg-gray-50 flex items-center gap-2 border-t border-gray-100">
-                                                <i class="fa-solid fa-image text-[#ea4335] text-xs"></i>
-                                                <div class="overflow-hidden flex-1">
-                                                    <div class="text-[11px] font-medium text-[#202124] truncate">salpicadero-km.jpg</div>
-                                                    <div class="text-[10px] text-gray-500">1.8 MB</div>
+                                                <div class="p-2 bg-gray-50 flex items-center gap-2 border-t border-gray-100">
+                                                    <i class="fa-solid fa-image text-[#ea4335] text-xs"></i>
+                                                    <div class="overflow-hidden flex-1">
+                                                        <div class="text-[11px] font-medium text-[#202124] truncate">frontal-passat.jpg</div>
+                                                        <div class="text-[10px] text-gray-500">2.4 MB</div>
+                                                    </div>
                                                 </div>
+                                                <div class="absolute -top-2 -right-2 bg-gray-200 hover:bg-gray-300 rounded-full w-5 h-5 flex items-center justify-center text-[10px] text-gray-600 border border-white shadow-sm"><i class="fa-solid fa-xmark"></i></div>
                                             </div>
-                                            <div class="absolute -top-2 -right-2 bg-gray-200 hover:bg-gray-300 rounded-full w-5 h-5 flex items-center justify-center text-[10px] text-gray-600 border border-white shadow-sm"><i class="fa-solid fa-xmark"></i></div>
+                                            <div class="border border-gray-200 rounded-lg flex flex-col w-40 sm:w-48 bg-white cursor-pointer shadow-sm relative hover:shadow transition overflow-hidden group">
+                                                <div class="h-24 w-full bg-gray-100 overflow-hidden">
+                                                    <img src="https://jcompan.github.io/domingoalonso/salpicadero.jpg" alt="Salpicadero KM" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                                                </div>
+                                                <div class="p-2 bg-gray-50 flex items-center gap-2 border-t border-gray-100">
+                                                    <i class="fa-solid fa-image text-[#ea4335] text-xs"></i>
+                                                    <div class="overflow-hidden flex-1">
+                                                        <div class="text-[11px] font-medium text-[#202124] truncate">salpicadero-km.jpg</div>
+                                                        <div class="text-[10px] text-gray-500">1.8 MB</div>
+                                                    </div>
+                                                </div>
+                                                <div class="absolute -top-2 -right-2 bg-gray-200 hover:bg-gray-300 rounded-full w-5 h-5 flex items-center justify-center text-[10px] text-gray-600 border border-white shadow-sm"><i class="fa-solid fa-xmark"></i></div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -604,7 +629,7 @@
                         </div>
                     </div>
 
-                    <!-- EMAIL 4: CARLOS (ENVÍA DATOS Y FOTOS) -->
+                    <!-- EMAIL 4: CARLOS (ENVÍA DATOS Y FOTOS ENVIADO) -->
                     <div class="email-item pt-4" id="email4">
                         <div class="flex items-start gap-3 mb-2">
                             <div class="w-10 h-10 bg-blue-600 rounded-full text-white flex items-center justify-center font-bold text-lg shrink-0">C</div>
@@ -664,6 +689,19 @@
                                     </div>
                                 </div>
                             </div>
+                            
+                            <!-- BOTÓN REPLY DE EMAIL 4 -->
+                            <div class="mt-4 flex gap-3">
+                                <button class="border border-gray-300 rounded-full px-6 py-2 text-[#444746] font-medium text-[14px] hover:bg-[#f1f3f4] transition flex items-center gap-2 cursor-pointer shadow-sm">
+                                    <i class="fa-solid fa-reply"></i> Reply
+                                </button>
+                                <button class="border border-gray-300 rounded-full px-6 py-2 text-[#444746] font-medium text-[14px] hover:bg-[#f1f3f4] transition flex items-center gap-2 cursor-pointer shadow-sm">
+                                    <i class="fa-solid fa-arrow-right"></i> Forward
+                                </button>
+                                <button class="border border-gray-300 rounded-full w-[38px] h-[38px] flex items-center justify-center text-[#444746] hover:bg-[#f1f3f4] transition cursor-pointer shadow-sm">
+                                    <i class="fa-regular fa-face-smile text-[16px]"></i>
+                                </button>
+                            </div>
                         </div>
                     </div>
 
@@ -682,14 +720,14 @@
                                     <div class="flex items-center gap-3 text-gray-500">
                                         <span class="text-xs">12:50 PM (ahora mismo)</span>
                                         <i class="fa-regular fa-star cursor-pointer hover:text-gray-700"></i>
-                                        <i class="fa-solid fa-reply cursor-pointer hover:text-gray-700"></i>
+                                        <i id="replyIcon3" class="fa-solid fa-reply cursor-pointer hover:text-gray-700" title="Reply"></i>
                                         <i class="fa-solid fa-ellipsis-vertical cursor-pointer hover:text-gray-700"></i>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         
-                        <div class="pl-0 md:pl-12 mt-2 pb-6 border-b border-gray-100">
+                        <div class="pl-0 md:pl-12 mt-2 pb-6 border-b border-gray-100 relative">
                             <div class="text-[14px] text-[#202124] leading-relaxed max-w-3xl">
                                 <p>¡Datos e imágenes recibidos y procesados correctamente, Carlos! 📸✅ He verificado el estado exterior y confirmado los kilómetros reales.</p>
                                 
@@ -703,28 +741,258 @@
 
                                 <p>Si utilizamos estos 2.850 € como entrada para el <strong>VW Golf 1.5 eTSI ECO</strong> que te ha gustado, se te quedaría una cuota de financiación espectacular de unos <strong>185€/mes</strong>.</p>
 
-                                <p class="mt-4">Ya que nos has indicado que estás en <strong>Gran Canaria</strong>, he avisado a mis compañeros de nuestro centro de Miller Bajo. ¿Te parece bien si te llama <strong>David</strong> esta tarde al 612 34 56 78 para confirmar una cita, ver el Golf en persona y cerrar el trámite?</p>
+                                <p class="mt-4">Ya que nos has indicado que estás en <strong>Gran Canaria</strong>, he reservado temporalmente el Golf en nuestro centro de Miller Bajo para que puedas venir a verlo en persona y hagamos la comprobación final de tu Passat.</p>
                                 
-                                <div class="mt-6 flex flex-wrap gap-3">
-                                    <a href="#" class="bg-[#059669] text-white px-5 py-2.5 rounded text-[13px] font-bold no-underline inline-flex items-center gap-2 hover:bg-[#047857] transition shadow-md">
-                                        <i class="fa-solid fa-phone"></i> Sí, que me llame David
-                                    </a>
-                                    <a href="#" class="bg-white border border-gray-300 text-[#444746] px-5 py-2.5 rounded text-[13px] font-bold no-underline inline-flex items-center gap-2 hover:bg-gray-50 transition">
-                                        Tengo alguna duda más
-                                    </a>
+                                <p class="mt-4 font-semibold text-[#002b49]"><i class="fa-regular fa-calendar-check mr-1 text-[#059669]"></i> Aquí tienes nuestra disponibilidad para esta semana. Responde a este correo indicando qué hueco prefieres:</p>
+                                
+                                <div class="mt-3 border border-gray-200 rounded-lg overflow-hidden max-w-sm bg-white shadow-sm">
+                                    <table class="w-full text-left border-collapse">
+                                        <tbody class="text-[13px]">
+                                            <tr class="border-b border-gray-100">
+                                                <td class="p-2.5 bg-gray-50 font-bold text-[#002b49] w-1/3">Mañana (Mié)</td>
+                                                <td class="p-2.5 text-gray-700">
+                                                    <span class="inline-block bg-blue-50 text-[#002b49] px-2 py-1 rounded border border-blue-100 mr-1">10:00 h</span>
+                                                    <span class="inline-block bg-blue-50 text-[#002b49] px-2 py-1 rounded border border-blue-100">16:30 h</span>
+                                                </td>
+                                            </tr>
+                                            <tr class="border-b border-gray-100">
+                                                <td class="p-2.5 bg-gray-50 font-bold text-[#002b49]">Jueves</td>
+                                                <td class="p-2.5 text-gray-700">
+                                                    <span class="inline-block bg-blue-50 text-[#002b49] px-2 py-1 rounded border border-blue-100 mr-1">11:00 h</span>
+                                                    <span class="inline-block bg-blue-50 text-[#002b49] px-2 py-1 rounded border border-blue-100">17:15 h</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="p-2.5 bg-gray-50 font-bold text-[#002b49]">Viernes</td>
+                                                <td class="p-2.5 text-gray-700">
+                                                    <span class="inline-block bg-blue-50 text-[#002b49] px-2 py-1 rounded border border-blue-100 mr-1">09:30 h</span>
+                                                    <span class="inline-block bg-blue-50 text-[#002b49] px-2 py-1 rounded border border-blue-100">12:00 h</span>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            
+                            <!-- BOTÓN REPLY DE EMAIL 5 -->
+                            <div class="mt-4 flex gap-3" id="replyArea3">
+                                <button id="replyBtn3" class="border border-gray-300 rounded-full px-6 py-2 text-[#444746] font-medium text-[14px] hover:bg-[#f1f3f4] transition flex items-center gap-2 cursor-pointer shadow-sm">
+                                    <i class="fa-solid fa-reply"></i> Reply
+                                </button>
+                                <button class="border border-gray-300 rounded-full px-6 py-2 text-[#444746] font-medium text-[14px] hover:bg-[#f1f3f4] transition flex items-center gap-2 cursor-pointer shadow-sm">
+                                    <i class="fa-solid fa-arrow-right"></i> Forward
+                                </button>
+                                <button class="border border-gray-300 rounded-full w-[38px] h-[38px] flex items-center justify-center text-[#444746] hover:bg-[#f1f3f4] transition cursor-pointer shadow-sm">
+                                    <i class="fa-regular fa-face-smile text-[16px]"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- COMPOSE 3: CARLOS ELIGE HORA -->
+                    <div class="email-item pt-4" id="compose3">
+                        <div class="flex items-start gap-3 mb-2">
+                            <div class="w-10 h-10 bg-blue-600 rounded-full text-white flex items-center justify-center font-bold text-lg shrink-0 z-10 shadow-sm">C</div>
+                            <div class="flex-1 border border-gray-200 rounded-xl shadow-lg bg-white overflow-hidden flex flex-col relative mt-1">
+                                <div class="px-4 py-2 border-b border-gray-100 flex items-center text-[13px] text-gray-500 bg-gray-50">
+                                    <i class="fa-solid fa-reply mr-2 text-gray-400"></i>
+                                    <span class="mr-2">Para:</span>
+                                    <span class="bg-white px-2 py-0.5 rounded-md border border-gray-200 text-gray-700 flex items-center gap-1 shadow-sm">Agente Domingo Alonso <i class="fa-solid fa-xmark text-[10px] ml-1"></i></span>
+                                </div>
+                                <div class="p-5 text-[14px] text-[#202124] min-h-[80px] outline-none bg-white leading-relaxed cursor-text" contenteditable="false">
+                                    <!-- Contenedor que aparecerá al pulsar la tecla -->
+                                    <div id="composeBody3" class="hidden">
+                                        <p>Perfecto. Me pasaría mañana sobre las 16:30, que salgo del trabajo a esa hora y me pilla de camino.</p>
+                                        <p class="mt-2">Un saludo.</p>
+                                    </div>
+                                </div>
+                                <div class="px-4 py-3 bg-gray-50 flex items-center justify-between border-t border-gray-100">
+                                    <div class="flex gap-1 items-center">
+                                        <button id="sendBtn3" class="bg-[#0b57d0] hover:bg-[#0842a0] text-white px-6 py-2 rounded-full font-medium text-sm transition shadow-sm mr-2 cursor-pointer">Send</button>
+                                        <i class="fa-solid fa-font text-gray-500 hover:bg-gray-200 p-2.5 rounded cursor-pointer hidden sm:block"></i>
+                                        <i class="fa-solid fa-paperclip text-gray-500 hover:bg-gray-200 p-2.5 rounded cursor-pointer"></i>
+                                        <i class="fa-regular fa-face-smile text-gray-500 hover:bg-gray-200 p-2.5 rounded cursor-pointer hidden sm:block"></i>
+                                        <i class="fa-regular fa-image text-gray-500 hover:bg-gray-200 p-2.5 rounded cursor-pointer"></i>
+                                    </div>
+                                    <i class="fa-regular fa-trash-can text-gray-500 hover:bg-gray-200 p-2.5 rounded cursor-pointer"></i>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- BOTONES INFERIORES TIPO GMAIL -->
-                    <div class="flex gap-3 pl-0 md:pl-12 mt-6 pb-12 opacity-0 transition-opacity duration-500" id="replyBox">
-                        <button class="border border-gray-300 rounded-full px-6 py-2 text-[#444746] font-medium text-[14px] hover:bg-[#f1f3f4] transition flex items-center gap-2">
-                            <i class="fa-solid fa-reply"></i> Reply
-                        </button>
-                        <button class="border border-gray-300 rounded-full px-6 py-2 text-[#444746] font-medium text-[14px] hover:bg-[#f1f3f4] transition flex items-center gap-2">
-                            <i class="fa-solid fa-arrow-right"></i> Forward
-                        </button>
+                    <!-- EMAIL 6: CARLOS CONFIRMA HORA ENVIADO -->
+                    <div class="email-item pt-4" id="email6">
+                        <div class="flex items-start gap-3 mb-2">
+                            <div class="w-10 h-10 bg-blue-600 rounded-full text-white flex items-center justify-center font-bold text-lg shrink-0">C</div>
+                            <div class="flex-1 min-w-0">
+                                <div class="flex justify-between items-start">
+                                    <div class="flex flex-col">
+                                        <span class="font-bold text-[14px] text-[#202124]">Carlos Gomez <span class="text-xs font-normal text-gray-500">&lt;carlos.gomez@gmail.com&gt;</span></span>
+                                        <span class="text-xs text-gray-500 flex items-center gap-1">to Domingo Alonso <i class="fa-solid fa-caret-down text-[10px]"></i></span>
+                                    </div>
+                                    <div class="flex items-center gap-3 text-gray-500">
+                                        <span class="text-xs">12:55 PM (hace 2 minutos)</span>
+                                        <i class="fa-regular fa-star cursor-pointer hover:text-gray-700"></i>
+                                        <i class="fa-solid fa-reply cursor-pointer hover:text-gray-700"></i>
+                                        <i class="fa-solid fa-ellipsis-vertical cursor-pointer hover:text-gray-700"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="pl-0 md:pl-12 mt-2 pb-6 border-b border-gray-100">
+                            <div class="text-[14px] text-[#202124] leading-relaxed max-w-3xl">
+                                <p>Perfecto. Me pasaría mañana sobre las 16:30, que salgo del trabajo a esa hora y me pilla de camino.</p>
+                                <p class="mt-2">Un saludo.</p>
+                            </div>
+                            
+                            <!-- BOTÓN REPLY DE EMAIL 6 -->
+                            <div class="mt-4 flex gap-3">
+                                <button class="border border-gray-300 rounded-full px-6 py-2 text-[#444746] font-medium text-[14px] hover:bg-[#f1f3f4] transition flex items-center gap-2 cursor-pointer shadow-sm">
+                                    <i class="fa-solid fa-reply"></i> Reply
+                                </button>
+                                <button class="border border-gray-300 rounded-full px-6 py-2 text-[#444746] font-medium text-[14px] hover:bg-[#f1f3f4] transition flex items-center gap-2 cursor-pointer shadow-sm">
+                                    <i class="fa-solid fa-arrow-right"></i> Forward
+                                </button>
+                                <button class="border border-gray-300 rounded-full w-[38px] h-[38px] flex items-center justify-center text-[#444746] hover:bg-[#f1f3f4] transition cursor-pointer shadow-sm">
+                                    <i class="fa-regular fa-face-smile text-[16px]"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- EMAIL 7: AGENTFORCE CONFIRMACIÓN FINAL Y WHATSAPP -->
+                    <div class="email-item pt-4" id="email7">
+                        <div class="flex items-start gap-3 mb-2">
+                            <div class="w-10 h-10 border border-gray-200 rounded-full bg-white shrink-0 overflow-hidden">
+                                <img src="https://jcompan.github.io/domingoalonso/domingo_alonso_logo.jpg" alt="Domingo Alonso" class="w-full h-full object-cover">
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <div class="flex justify-between items-start">
+                                    <div class="flex flex-col">
+                                        <span class="font-bold text-[14px] text-[#202124]">Agente Domingo Alonso <span class="text-xs font-normal text-gray-500">&lt;agente@domingoalonsoocasion.com&gt;</span></span>
+                                        <span class="text-xs text-gray-500 flex items-center gap-1">to me <i class="fa-solid fa-caret-down text-[10px]"></i></span>
+                                    </div>
+                                    <div class="flex items-center gap-3 text-gray-500">
+                                        <span class="text-xs">12:56 PM (ahora mismo)</span>
+                                        <i class="fa-regular fa-star cursor-pointer hover:text-gray-700"></i>
+                                        <i id="replyIcon4" class="fa-solid fa-reply cursor-pointer hover:text-gray-700" title="Reply"></i>
+                                        <i class="fa-solid fa-ellipsis-vertical cursor-pointer hover:text-gray-700"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pl-0 md:pl-12 mt-2 pb-6 border-b border-gray-100 relative">
+                            <div class="text-[14px] text-[#202124] leading-relaxed max-w-3xl">
+                                <p>¡Genial, Carlos! 🗓️ Queda agendado para <strong>mañana a las 16:30 h</strong>.</p>
+                                <p class="mt-2">Mi compañero David te estará esperando en las instalaciones de Miller Bajo con el Golf listo para que lo pruebes y para revisar en persona los últimos detalles de tu Passat.</p>
+                                
+                                <!-- Bloque de Dirección y Google Maps -->
+                                <div class="mt-4 mb-4 bg-[#f8f9fa] border border-gray-200 rounded-lg p-4 flex items-start gap-3 max-w-md shadow-sm">
+                                    <div class="mt-1 w-8 h-8 bg-red-100 text-red-600 rounded-full flex items-center justify-center shrink-0">
+                                        <i class="fa-solid fa-location-dot"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-[#002b49] text-[14px]">Domingo Alonso Ocasión - Miller Bajo</h4>
+                                        <p class="text-[13px] text-gray-600 mt-1">C. Diego Vega Sarmiento, 11<br>35014 Las Palmas de Gran Canaria</p>
+                                        <a href="https://maps.google.com/?q=Domingo+Alonso+Ocasion+Miller+Bajo" target="_blank" class="mt-2 inline-flex items-center gap-1.5 text-[12px] font-bold text-[#005eb8] hover:underline">
+                                            <i class="fa-solid fa-map-location-dot"></i> Abrir en Google Maps
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <p class="mt-4 p-3 bg-green-50 border border-green-100 rounded-lg text-[#002b49]">
+                                    <i class="fa-brands fa-whatsapp text-[#25D366] text-lg mr-1 align-middle"></i> <strong>Para ponértelo aún más fácil:</strong> si nos das tu OK, mañana por la mañana te enviaremos un breve recordatorio por WhatsApp. Así, si te surge cualquier imprevisto o atasco, podrás avisarnos o reprogramar la cita al instante por ahí mismo.
+                                </p>
+                                
+                                <p class="mt-3 font-semibold text-[#002b49]">¿Nos confirmas tu OK para contactarte por WhatsApp al número que nos diste?</p>
+                            </div>
+                            
+                            <!-- BOTÓN REPLY DE EMAIL 7 -->
+                            <div class="mt-4 flex gap-3" id="replyArea4">
+                                <button id="replyBtn4" class="border border-gray-300 rounded-full px-6 py-2 text-[#444746] font-medium text-[14px] hover:bg-[#f1f3f4] transition flex items-center gap-2 cursor-pointer shadow-sm">
+                                    <i class="fa-solid fa-reply"></i> Reply
+                                </button>
+                                <button class="border border-gray-300 rounded-full px-6 py-2 text-[#444746] font-medium text-[14px] hover:bg-[#f1f3f4] transition flex items-center gap-2 cursor-pointer shadow-sm">
+                                    <i class="fa-solid fa-arrow-right"></i> Forward
+                                </button>
+                                <button class="border border-gray-300 rounded-full w-[38px] h-[38px] flex items-center justify-center text-[#444746] hover:bg-[#f1f3f4] transition cursor-pointer shadow-sm">
+                                    <i class="fa-regular fa-face-smile text-[16px]"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- COMPOSE 4: CARLOS DA OK A WHATSAPP -->
+                    <div class="email-item pt-4" id="compose4">
+                        <div class="flex items-start gap-3 mb-2">
+                            <div class="w-10 h-10 bg-blue-600 rounded-full text-white flex items-center justify-center font-bold text-lg shrink-0 z-10 shadow-sm">C</div>
+                            <div class="flex-1 border border-gray-200 rounded-xl shadow-lg bg-white overflow-hidden flex flex-col relative mt-1">
+                                <div class="px-4 py-2 border-b border-gray-100 flex items-center text-[13px] text-gray-500 bg-gray-50">
+                                    <i class="fa-solid fa-reply mr-2 text-gray-400"></i>
+                                    <span class="mr-2">Para:</span>
+                                    <span class="bg-white px-2 py-0.5 rounded-md border border-gray-200 text-gray-700 flex items-center gap-1 shadow-sm">Agente Domingo Alonso <i class="fa-solid fa-xmark text-[10px] ml-1"></i></span>
+                                </div>
+                                <div class="p-5 text-[14px] text-[#202124] min-h-[80px] outline-none bg-white leading-relaxed cursor-text" contenteditable="false">
+                                    <div id="composeBody4" class="hidden">
+                                        <p>Sí, me parece perfecto. Os doy mi OK para que me enviéis el recordatorio por WhatsApp.</p>
+                                        <p class="mt-2">¡Hasta mañana!</p>
+                                    </div>
+                                </div>
+                                <div class="px-4 py-3 bg-gray-50 flex items-center justify-between border-t border-gray-100">
+                                    <div class="flex gap-1 items-center">
+                                        <button id="sendBtn4" class="bg-[#0b57d0] hover:bg-[#0842a0] text-white px-6 py-2 rounded-full font-medium text-sm transition shadow-sm mr-2 cursor-pointer">Send</button>
+                                        <i class="fa-solid fa-font text-gray-500 hover:bg-gray-200 p-2.5 rounded cursor-pointer hidden sm:block"></i>
+                                        <i class="fa-solid fa-paperclip text-gray-500 hover:bg-gray-200 p-2.5 rounded cursor-pointer"></i>
+                                        <i class="fa-regular fa-face-smile text-gray-500 hover:bg-gray-200 p-2.5 rounded cursor-pointer hidden sm:block"></i>
+                                        <i class="fa-regular fa-image text-gray-500 hover:bg-gray-200 p-2.5 rounded cursor-pointer"></i>
+                                    </div>
+                                    <i class="fa-regular fa-trash-can text-gray-500 hover:bg-gray-200 p-2.5 rounded cursor-pointer"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- EMAIL 8: CARLOS CONFIRMA WHATSAPP ENVIADO -->
+                    <div class="email-item pt-4" id="email8">
+                        <div class="flex items-start gap-3 mb-2">
+                            <div class="w-10 h-10 bg-blue-600 rounded-full text-white flex items-center justify-center font-bold text-lg shrink-0">C</div>
+                            <div class="flex-1 min-w-0">
+                                <div class="flex justify-between items-start">
+                                    <div class="flex flex-col">
+                                        <span class="font-bold text-[14px] text-[#202124]">Carlos Gomez <span class="text-xs font-normal text-gray-500">&lt;carlos.gomez@gmail.com&gt;</span></span>
+                                        <span class="text-xs text-gray-500 flex items-center gap-1">to Domingo Alonso <i class="fa-solid fa-caret-down text-[10px]"></i></span>
+                                    </div>
+                                    <div class="flex items-center gap-3 text-gray-500">
+                                        <span class="text-xs">12:58 PM (ahora mismo)</span>
+                                        <i class="fa-regular fa-star cursor-pointer hover:text-gray-700"></i>
+                                        <i class="fa-solid fa-reply cursor-pointer hover:text-gray-700"></i>
+                                        <i class="fa-solid fa-ellipsis-vertical cursor-pointer hover:text-gray-700"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="pl-0 md:pl-12 mt-2 pb-12 border-b-0 border-gray-100">
+                            <div class="text-[14px] text-[#202124] leading-relaxed max-w-3xl">
+                                <p>Sí, me parece perfecto. Os doy mi OK para que me enviéis el recordatorio por WhatsApp.</p>
+                                <p class="mt-2">¡Hasta mañana!</p>
+                            </div>
+                            
+                            <!-- BOTÓN REPLY DE EMAIL 8 -->
+                            <div class="mt-4 flex gap-3">
+                                <button class="border border-gray-300 rounded-full px-6 py-2 text-[#444746] font-medium text-[14px] hover:bg-[#f1f3f4] transition flex items-center gap-2 cursor-pointer shadow-sm">
+                                    <i class="fa-solid fa-reply"></i> Reply
+                                </button>
+                                <button class="border border-gray-300 rounded-full px-6 py-2 text-[#444746] font-medium text-[14px] hover:bg-[#f1f3f4] transition flex items-center gap-2 cursor-pointer shadow-sm">
+                                    <i class="fa-solid fa-arrow-right"></i> Forward
+                                </button>
+                                <button class="border border-gray-300 rounded-full w-[38px] h-[38px] flex items-center justify-center text-[#444746] hover:bg-[#f1f3f4] transition cursor-pointer shadow-sm">
+                                    <i class="fa-regular fa-face-smile text-[16px]"></i>
+                                </button>
+                            </div>
+                        </div>
                     </div>
 
                 </div>
@@ -765,36 +1033,40 @@
             });
 
             function iniciarFlujo(aiMode, delayMs) {
-                // Máquina de estados: Las acciones de Carlos siempre requieren click en los botones.
-                // Las respuestas de la IA ('ai_response') se controlan por el configurador.
+                // Secuencia actualizada: Se elimina el bloque replyBox final retardado
                 const sequence = [
                     { action: 'show', id: 'email1', type: 'auto', delay: 500 },
                     { action: 'show', id: 'compose1', type: 'click', triggerBtn: 'replyBtn1', altTriggerBtn: 'replyIcon1', hideId: 'replyArea1' }, 
+                    { action: 'reveal_content', targetId: 'composeBody1', type: 'keydown' }, 
                     { action: 'replace', hideId: 'compose1', showId: 'email2', type: 'click', triggerBtn: 'sendBtn1' },
                     { action: 'show', id: 'email3', type: 'ai_response' },
                     { action: 'show', id: 'compose2', type: 'click', triggerBtn: 'replyBtn2', altTriggerBtn: 'replyIcon2', hideId: 'replyArea2' },
+                    { action: 'reveal_content', targetId: 'composeBody2', type: 'keydown' },
                     { action: 'replace', hideId: 'compose2', showId: 'email4', type: 'click', triggerBtn: 'sendBtn2' },
                     { action: 'show', id: 'email5', type: 'ai_response' },
-                    { action: 'show', id: 'replyBox', type: 'ai_response' }
+                    { action: 'show', id: 'compose3', type: 'click', triggerBtn: 'replyBtn3', altTriggerBtn: 'replyIcon3', hideId: 'replyArea3' },
+                    { action: 'reveal_content', targetId: 'composeBody3', type: 'keydown' },
+                    { action: 'replace', hideId: 'compose3', showId: 'email6', type: 'click', triggerBtn: 'sendBtn3' },
+                    { action: 'show', id: 'email7', type: 'ai_response' },
+                    { action: 'show', id: 'compose4', type: 'click', triggerBtn: 'replyBtn4', altTriggerBtn: 'replyIcon4', hideId: 'replyArea4' },
+                    { action: 'reveal_content', targetId: 'composeBody4', type: 'keydown' },
+                    { action: 'replace', hideId: 'compose4', showId: 'email8', type: 'click', triggerBtn: 'sendBtn4' }
                 ];
                 
                 const container = document.getElementById('scrollContainer');
                 let currentStep = 0;
 
                 function animateIn(el) {
-                    if (el.id === 'replyBox') {
-                        el.classList.add('opacity-100');
-                        el.classList.remove('opacity-0');
-                    } else {
-                        el.classList.add('active'); // Aplica display: block
-                        void el.offsetWidth; // Fuerza el redibujado
-                        el.classList.add('visible'); // Dispara animación
-                    }
+                    el.classList.add('active'); // Aplica display: block
+                    void el.offsetWidth; // Fuerza el redibujado
+                    el.classList.add('visible'); // Dispara animación
                 }
 
                 function scrollAfter(targetEl) {
                     setTimeout(() => {
-                        const topPos = targetEl.offsetTop - 70;
+                        // Buscamos el contenedor principal (.email-item) para que el offsetTop sea siempre el correcto
+                        const parentItem = targetEl.closest('.email-item') || targetEl;
+                        const topPos = parentItem.offsetTop - 70;
                         container.scrollTo({ top: topPos, behavior: 'smooth' });
                     }, 50);
                 }
@@ -823,6 +1095,13 @@
                             hideEl.style.display = 'none'; 
                         }
                         if (targetEl) animateIn(targetEl);
+                    } else if (step.action === 'reveal_content') {
+                        // Desvela el contenido del borrador
+                        const contentEl = document.getElementById(step.targetId);
+                        if (contentEl) {
+                            contentEl.classList.remove('hidden');
+                        }
+                        targetEl = contentEl;
                     }
                     
                     if (targetEl) scrollAfter(targetEl);
@@ -831,10 +1110,9 @@
                     setupTriggerForCurrentStep();
                 }
 
-                const keydownHandler = (e) => {
-                    // Ignorar teclas modificadoras para evitar avanzar sin querer
+                const aiKeydownHandler = (e) => {
                     if (e.key !== "Alt" && e.key !== "Control" && e.key !== "Shift" && e.key !== "Meta") {
-                        document.removeEventListener('keydown', keydownHandler);
+                        document.removeEventListener('keydown', aiKeydownHandler);
                         showNext();
                     }
                 };
@@ -861,13 +1139,24 @@
                         if (btn) btn.addEventListener('click', onClick);
                         if (altBtn) altBtn.addEventListener('click', onClick);
                     }
+                    else if (nextStep.type === 'keydown') {
+                        // Espera a que el usuario pulse una tecla para rellenar el texto
+                        const revealHandler = (e) => {
+                            if (e.key !== "Alt" && e.key !== "Control" && e.key !== "Shift" && e.key !== "Meta") {
+                                e.preventDefault(); // Evitamos que la barra espaciadora haga scroll en la página
+                                document.removeEventListener('keydown', revealHandler);
+                                showNext();
+                            }
+                        };
+                        document.addEventListener('keydown', revealHandler);
+                    }
                     else if (nextStep.type === 'ai_response') {
                         // Determinar cómo llega la respuesta de la IA según la config elegida
                         if (aiMode === 'auto') {
                             setTimeout(showNext, delayMs);
                         } else {
-                            // En modo manual, esperamos que se pulse una tecla para que entre el correo del Agente
-                            document.addEventListener('keydown', keydownHandler);
+                            // En modo manual, esperamos que se pulse una tecla
+                            document.addEventListener('keydown', aiKeydownHandler);
                         }
                     }
                 }
